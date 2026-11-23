@@ -1,0 +1,16 @@
+title,category,difficulty,status,tags,code
+Valid import row,Style,Easy,Draft,demo,"def f(x):
+    return x == None
+"
+Another valid row,performance,Medium,Tested,"demo,loops","print(sum(range(10)))
+"
+Bad category,Magic,Easy,Draft,,"print(1)
+"
+Empty code,Style,Easy,Draft,,
+Syntax problem,Bug Fix,Easy,Draft,,"def broken(:
+    pass
+"
+ab,Style,Easy,Draft,,"print(2)
+"
+Bad status,Safety,Easy,Finished,,"print(3)
+"

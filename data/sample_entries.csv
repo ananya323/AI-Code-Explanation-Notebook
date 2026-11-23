@@ -1,0 +1,645 @@
+id,title,category,difficulty,status,tags,created_at,updated_at,score,complexity_before,complexity_after,test_original,test_improved,code,improved_code,explanation,rationale
+b847c33a,Squares list v2,Performance,Medium,Documented,loops|comprehension,2026-09-30T06:39:50,2026-09-30T06:39:50,81.5,2,2,passed,passed,"def squares(n):
+    out = []
+    for i in range(n):
+        out.append(i * i)
+    return out
+
+print(squares(6))
+","def squares(n):
+    """"""Squares.""""""
+    out = [i * i for i in range(n)]
+    return out
+print(squares(6))",Defines 1 function(s): `squares(n)`. Uses 1 loop(s). Prints results to the console. Returns a computed value to its caller.,"- Replaced an append-in-a-loop with a list comprehension.
+- Added a docstring to `squares()`.
+- Note: the rewrite goes through the AST, so comments are not preserved.
+
+Tip (Performance): Prefer built-ins and comprehensions; avoid repeated work inside loops."
+bfa64e02,Hello script,Style,Medium,Documented,script,2026-10-03T12:48:50,2026-10-03T12:48:50,60.0,1,1,passed,passed,"print('hello world')
+","print('hello world')
+",Prints results to the console.,"- No safe automatic improvement found; the code already follows the common patterns.
+
+Tip (Style): Follow PEP 8 and PEP 20: compare with None using `is`, return booleans directly."
+d8fd6d99,Average of empty list v3,Bug Fix,Hard,Draft,edge-case|zerodivision,2026-10-03T17:07:50,2026-10-03T17:07:50,58.5,1,1,failed,failed,"def average(nums):
+    return sum(nums) / len(nums)
+
+print(average([1, 2, 3]))
+print(average([]))
+","def average(nums):
+    """"""Average.""""""
+    return sum(nums) / len(nums)
+print(average([1, 2, 3]))
+print(average([]))",Defines 1 function(s): `average(nums)`. Prints results to the console. Returns a computed value to its caller.,"- Added a docstring to `average()`.
+- Note: the rewrite goes through the AST, so comments are not preserved.
+
+Tip (Bug Fix): Add guard clauses for empty or invalid input before computing."
+d80e130e,Recursive Fibonacci v4,Performance,Easy,Draft,recursion,2026-10-06T09:00:50,2026-10-06T09:00:50,78.5,3,3,passed,passed,"def fib(n):
+    if n < 2:
+        return n
+    return fib(n - 1) + fib(n - 2)
+
+print([fib(i) for i in range(12)])
+","def fib(n):
+    """"""Fib.""""""
+    if n < 2:
+        return n
+    return fib(n - 1) + fib(n - 2)
+print([fib(i) for i in range(12)])",Defines 1 function(s): `fib(n)`. Branches in 1 place(s). Prints results to the console. Returns a computed value to its caller.,"- Added a docstring to `fib()`.
+- Note: the rewrite goes through the AST, so comments are not preserved.
+
+Tip (Performance): Prefer built-ins and comprehensions; avoid repeated work inside loops."
+413566f3,Filter even numbers,Performance,Hard,Draft,loops|lists,2026-10-07T06:19:50,2026-10-07T06:19:50,88.0,3,2,passed,passed,"def evens(nums):
+    result = []
+    for n in nums:
+        if n % 2 == 0:
+            result.append(n)
+    return result
+
+print(evens(range(10)))
+","def evens(nums):
+    """"""Evens.""""""
+    result = [n for n in nums if n % 2 == 0]
+    return result
+print(evens(range(10)))",Defines 1 function(s): `evens(nums)`. Uses 1 loop(s). Branches in 1 place(s). Prints results to the console. Returns a computed value to its caller.,"- Replaced an append-in-a-loop with a list comprehension.
+- Added a docstring to `evens()`.
+- Note: the rewrite goes through the AST, so comments are not preserved.
+
+Tip (Performance): Prefer built-ins and comprehensions; avoid repeated work inside loops."
+b2b27a91,Adult age check v4,Readability,Medium,Draft,booleans,2026-10-07T15:18:50,2026-10-07T15:18:50,88.0,2,1,passed,passed,"def is_adult(age):
+    if age >= 18:
+        return True
+    else:
+        return False
+
+print(is_adult(20), is_adult(12))
+","def is_adult(age):
+    """"""Is adult.""""""
+    return age >= 18
+print(is_adult(20), is_adult(12))",Defines 1 function(s): `is_adult(age)`. Branches in 1 place(s). Prints results to the console. Returns a computed value to its caller.,"- Returned the boolean expression directly instead of if/else True/False.
+- Added a docstring to `is_adult()`.
+- Note: the rewrite goes through the AST, so comments are not preserved.
+
+Tip (Readability): Small functions with clear names and docstrings are easier to review."
+8710c92b,Word frequency counter v2,Readability,Medium,Documented,dicts|text,2026-10-10T18:30:50,2026-10-10T18:30:50,78.5,3,3,passed,passed,"def count_words(text):
+    counts = {}
+    for w in text.split():
+        if w in counts:
+            counts[w] = counts[w] + 1
+        else:
+            counts[w] = 1
+    return counts
+
+print(count_words('a b a c b a'))
+","def count_words(text):
+    """"""Count words.""""""
+    counts = {}
+    for w in text.split():
+        if w in counts:
+            counts[w] = counts[w] + 1
+        else:
+            counts[w] = 1
+    return counts
+print(count_words('a b a c b a'))",Defines 1 function(s): `count_words(text)`. Uses 1 loop(s). Branches in 1 place(s). Prints results to the console. Returns a computed value to its caller.,"- Added a docstring to `count_words()`.
+- Note: the rewrite goes through the AST, so comments are not preserved.
+
+Tip (Readability): Small functions with clear names and docstrings are easier to review."
+54592e90,Safe division,Safety,Hard,Draft,errors,2026-10-12T16:00:50,2026-10-12T16:00:50,78.5,2,2,passed,passed,"def safe_div(a, b):
+    try:
+        return a / b
+    except:
+        return None
+
+print(safe_div(4, 2), safe_div(1, 0))
+","def safe_div(a, b):
+    """"""Safe div.""""""
+    try:
+        return a / b
+    except Exception:
+        return None
+print(safe_div(4, 2), safe_div(1, 0))","Defines 1 function(s): `safe_div(a, b)`. Handles errors with try/except. Prints results to the console. Returns a computed value to its caller.","- Replaced bare `except:` with `except Exception:`.
+- Added a docstring to `safe_div()`.
+- Note: the rewrite goes through the AST, so comments are not preserved.
+
+Tip (Safety): Never use bare `except:`; catch specific exceptions and avoid eval/exec."
+ef47f322,Safe division v4,Safety,Hard,Tested,errors,2026-10-13T21:56:50,2026-10-13T21:56:50,78.5,2,2,passed,passed,"def safe_div(a, b):
+    try:
+        return a / b
+    except:
+        return None
+
+print(safe_div(4, 2), safe_div(1, 0))
+","def safe_div(a, b):
+    """"""Safe div.""""""
+    try:
+        return a / b
+    except Exception:
+        return None
+print(safe_div(4, 2), safe_div(1, 0))","Defines 1 function(s): `safe_div(a, b)`. Handles errors with try/except. Prints results to the console. Returns a computed value to its caller.","- Replaced bare `except:` with `except Exception:`.
+- Added a docstring to `safe_div()`.
+- Note: the rewrite goes through the AST, so comments are not preserved.
+
+Tip (Safety): Never use bare `except:`; catch specific exceptions and avoid eval/exec."
+559893f0,Greeting with None check v2,Style,Medium,Documented,none|pep8,2026-10-15T02:58:50,2026-10-15T02:58:50,78.5,2,2,passed,passed,"def greet(name):
+    if name == None:
+        return 'Hello, stranger'
+    return 'Hello, ' + name
+
+print(greet(None))
+print(greet('Ada'))
+","def greet(name):
+    """"""Greet.""""""
+    if name is None:
+        return 'Hello, stranger'
+    return 'Hello, ' + name
+print(greet(None))
+print(greet('Ada'))",Defines 1 function(s): `greet(name)`. Branches in 1 place(s). Prints results to the console. Returns a computed value to its caller.,"- Compared with None using `is` / `is not` instead of `==` / `!=`.
+- Added a docstring to `greet()`.
+- Note: the rewrite goes through the AST, so comments are not preserved.
+
+Tip (Style): Follow PEP 8 and PEP 20: compare with None using `is`, return booleans directly."
+b3dcf43f,Word frequency counter v4,Readability,Hard,Documented,dicts|text,2026-10-16T04:03:50,2026-10-16T04:03:50,78.5,3,3,passed,passed,"def count_words(text):
+    counts = {}
+    for w in text.split():
+        if w in counts:
+            counts[w] = counts[w] + 1
+        else:
+            counts[w] = 1
+    return counts
+
+print(count_words('a b a c b a'))
+","def count_words(text):
+    """"""Count words.""""""
+    counts = {}
+    for w in text.split():
+        if w in counts:
+            counts[w] = counts[w] + 1
+        else:
+            counts[w] = 1
+    return counts
+print(count_words('a b a c b a'))",Defines 1 function(s): `count_words(text)`. Uses 1 loop(s). Branches in 1 place(s). Prints results to the console. Returns a computed value to its caller.,"- Added a docstring to `count_words()`.
+- Note: the rewrite goes through the AST, so comments are not preserved.
+
+Tip (Readability): Small functions with clear names and docstrings are easier to review."
+b56f633c,Safe division v3,Safety,Hard,Tested,errors,2026-10-17T00:37:50,2026-10-17T00:37:50,78.5,2,2,passed,passed,"def safe_div(a, b):
+    try:
+        return a / b
+    except:
+        return None
+
+print(safe_div(4, 2), safe_div(1, 0))
+","def safe_div(a, b):
+    """"""Safe div.""""""
+    try:
+        return a / b
+    except Exception:
+        return None
+print(safe_div(4, 2), safe_div(1, 0))","Defines 1 function(s): `safe_div(a, b)`. Handles errors with try/except. Prints results to the console. Returns a computed value to its caller.","- Replaced bare `except:` with `except Exception:`.
+- Added a docstring to `safe_div()`.
+- Note: the rewrite goes through the AST, so comments are not preserved.
+
+Tip (Safety): Never use bare `except:`; catch specific exceptions and avoid eval/exec."
+aa902006,Recursive Fibonacci,Performance,Medium,Tested,recursion,2026-10-17T05:43:50,2026-10-17T05:43:50,78.5,3,3,passed,passed,"def fib(n):
+    if n < 2:
+        return n
+    return fib(n - 1) + fib(n - 2)
+
+print([fib(i) for i in range(12)])
+","def fib(n):
+    """"""Fib.""""""
+    if n < 2:
+        return n
+    return fib(n - 1) + fib(n - 2)
+print([fib(i) for i in range(12)])",Defines 1 function(s): `fib(n)`. Branches in 1 place(s). Prints results to the console. Returns a computed value to its caller.,"- Added a docstring to `fib()`.
+- Note: the rewrite goes through the AST, so comments are not preserved.
+
+Tip (Performance): Prefer built-ins and comprehensions; avoid repeated work inside loops."
+b372ff76,Greeting with None check v3,Style,Easy,Documented,none|pep8,2026-10-17T16:14:50,2026-10-17T16:14:50,78.5,2,2,passed,passed,"def greet(name):
+    if name == None:
+        return 'Hello, stranger'
+    return 'Hello, ' + name
+
+print(greet(None))
+print(greet('Ada'))
+","def greet(name):
+    """"""Greet.""""""
+    if name is None:
+        return 'Hello, stranger'
+    return 'Hello, ' + name
+print(greet(None))
+print(greet('Ada'))",Defines 1 function(s): `greet(name)`. Branches in 1 place(s). Prints results to the console. Returns a computed value to its caller.,"- Compared with None using `is` / `is not` instead of `==` / `!=`.
+- Added a docstring to `greet()`.
+- Note: the rewrite goes through the AST, so comments are not preserved.
+
+Tip (Style): Follow PEP 8 and PEP 20: compare with None using `is`, return booleans directly."
+8ceca047,Pair sum finder v4,Performance,Easy,Tested,nested-loops,2026-10-18T12:29:50,2026-10-18T12:29:50,78.5,4,4,passed,passed,"def find_pairs(nums, target):
+    pairs = []
+    for i in range(len(nums)):
+        for j in range(i + 1, len(nums)):
+            if nums[i] + nums[j] == target:
+                pairs.append((nums[i], nums[j]))
+    return pairs
+
+print(find_pairs([1, 2, 3, 4, 5], 6))
+","def find_pairs(nums, target):
+    """"""Find pairs.""""""
+    pairs = []
+    for i in range(len(nums)):
+        for j in range(i + 1, len(nums)):
+            if nums[i] + nums[j] == target:
+                pairs.append((nums[i], nums[j]))
+    return pairs
+print(find_pairs([1, 2, 3, 4, 5], 6))","Defines 1 function(s): `find_pairs(nums, target)`. Uses 2 loop(s), including nested iteration (roughly quadratic work). Branches in 1 place(s). Prints results to the console. Returns a computed value to its caller.","- Added a docstring to `find_pairs()`.
+- Note: the rewrite goes through the AST, so comments are not preserved.
+
+Tip (Performance): Prefer built-ins and comprehensions; avoid repeated work inside loops."
+48a31695,Hello script v3,Style,Hard,Tested,script,2026-10-19T13:51:50,2026-10-19T13:51:50,60.0,1,1,passed,passed,"print('hello world')
+","print('hello world')
+",Prints results to the console.,"- No safe automatic improvement found; the code already follows the common patterns.
+
+Tip (Style): Follow PEP 8 and PEP 20: compare with None using `is`, return booleans directly."
+0425a9bb,Average of empty list v2,Bug Fix,Hard,Draft,edge-case|zerodivision,2026-10-19T15:19:50,2026-10-19T15:19:50,58.5,1,1,failed,failed,"def average(nums):
+    return sum(nums) / len(nums)
+
+print(average([1, 2, 3]))
+print(average([]))
+","def average(nums):
+    """"""Average.""""""
+    return sum(nums) / len(nums)
+print(average([1, 2, 3]))
+print(average([]))",Defines 1 function(s): `average(nums)`. Prints results to the console. Returns a computed value to its caller.,"- Added a docstring to `average()`.
+- Note: the rewrite goes through the AST, so comments are not preserved.
+
+Tip (Bug Fix): Add guard clauses for empty or invalid input before computing."
+9b88a13c,Filter even numbers v4,Performance,Hard,Draft,loops|lists,2026-10-20T05:45:50,2026-10-20T05:45:50,88.0,3,2,passed,passed,"def evens(nums):
+    result = []
+    for n in nums:
+        if n % 2 == 0:
+            result.append(n)
+    return result
+
+print(evens(range(10)))
+","def evens(nums):
+    """"""Evens.""""""
+    result = [n for n in nums if n % 2 == 0]
+    return result
+print(evens(range(10)))",Defines 1 function(s): `evens(nums)`. Uses 1 loop(s). Branches in 1 place(s). Prints results to the console. Returns a computed value to its caller.,"- Replaced an append-in-a-loop with a list comprehension.
+- Added a docstring to `evens()`.
+- Note: the rewrite goes through the AST, so comments are not preserved.
+
+Tip (Performance): Prefer built-ins and comprehensions; avoid repeated work inside loops."
+2ba3e640,Squares list,Performance,Easy,Tested,loops|comprehension,2026-10-21T19:33:50,2026-10-21T19:33:50,81.5,2,2,passed,passed,"def squares(n):
+    out = []
+    for i in range(n):
+        out.append(i * i)
+    return out
+
+print(squares(6))
+","def squares(n):
+    """"""Squares.""""""
+    out = [i * i for i in range(n)]
+    return out
+print(squares(6))",Defines 1 function(s): `squares(n)`. Uses 1 loop(s). Prints results to the console. Returns a computed value to its caller.,"- Replaced an append-in-a-loop with a list comprehension.
+- Added a docstring to `squares()`.
+- Note: the rewrite goes through the AST, so comments are not preserved.
+
+Tip (Performance): Prefer built-ins and comprehensions; avoid repeated work inside loops."
+a8cb246b,Squares list v4,Performance,Hard,Documented,loops|comprehension,2026-10-22T10:39:50,2026-10-22T10:39:50,81.5,2,2,passed,passed,"def squares(n):
+    out = []
+    for i in range(n):
+        out.append(i * i)
+    return out
+
+print(squares(6))
+","def squares(n):
+    """"""Squares.""""""
+    out = [i * i for i in range(n)]
+    return out
+print(squares(6))",Defines 1 function(s): `squares(n)`. Uses 1 loop(s). Prints results to the console. Returns a computed value to its caller.,"- Replaced an append-in-a-loop with a list comprehension.
+- Added a docstring to `squares()`.
+- Note: the rewrite goes through the AST, so comments are not preserved.
+
+Tip (Performance): Prefer built-ins and comprehensions; avoid repeated work inside loops."
+3adda438,Safe division v2,Safety,Easy,Tested,errors,2026-10-24T17:41:50,2026-10-24T17:41:50,78.5,2,2,passed,passed,"def safe_div(a, b):
+    try:
+        return a / b
+    except:
+        return None
+
+print(safe_div(4, 2), safe_div(1, 0))
+","def safe_div(a, b):
+    """"""Safe div.""""""
+    try:
+        return a / b
+    except Exception:
+        return None
+print(safe_div(4, 2), safe_div(1, 0))","Defines 1 function(s): `safe_div(a, b)`. Handles errors with try/except. Prints results to the console. Returns a computed value to its caller.","- Replaced bare `except:` with `except Exception:`.
+- Added a docstring to `safe_div()`.
+- Note: the rewrite goes through the AST, so comments are not preserved.
+
+Tip (Safety): Never use bare `except:`; catch specific exceptions and avoid eval/exec."
+6addd410,Adult age check,Readability,Hard,Draft,booleans,2026-10-27T13:33:50,2026-10-27T13:33:50,88.0,2,1,passed,passed,"def is_adult(age):
+    if age >= 18:
+        return True
+    else:
+        return False
+
+print(is_adult(20), is_adult(12))
+","def is_adult(age):
+    """"""Is adult.""""""
+    return age >= 18
+print(is_adult(20), is_adult(12))",Defines 1 function(s): `is_adult(age)`. Branches in 1 place(s). Prints results to the console. Returns a computed value to its caller.,"- Returned the boolean expression directly instead of if/else True/False.
+- Added a docstring to `is_adult()`.
+- Note: the rewrite goes through the AST, so comments are not preserved.
+
+Tip (Readability): Small functions with clear names and docstrings are easier to review."
+3f5ac3b7,Adult age check v3,Readability,Easy,Documented,booleans,2026-10-28T18:05:50,2026-10-28T18:05:50,88.0,2,1,passed,passed,"def is_adult(age):
+    if age >= 18:
+        return True
+    else:
+        return False
+
+print(is_adult(20), is_adult(12))
+","def is_adult(age):
+    """"""Is adult.""""""
+    return age >= 18
+print(is_adult(20), is_adult(12))",Defines 1 function(s): `is_adult(age)`. Branches in 1 place(s). Prints results to the console. Returns a computed value to its caller.,"- Returned the boolean expression directly instead of if/else True/False.
+- Added a docstring to `is_adult()`.
+- Note: the rewrite goes through the AST, so comments are not preserved.
+
+Tip (Readability): Small functions with clear names and docstrings are easier to review."
+e384eda4,Boundary: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx,Performance,Easy,Documented,loops|lists,2026-10-29T06:30:50,2026-10-29T06:30:50,88.0,3,2,passed,passed,"def evens(nums):
+    result = []
+    for n in nums:
+        if n % 2 == 0:
+            result.append(n)
+    return result
+
+print(evens(range(10)))
+","def evens(nums):
+    """"""Evens.""""""
+    result = [n for n in nums if n % 2 == 0]
+    return result
+print(evens(range(10)))",Defines 1 function(s): `evens(nums)`. Uses 1 loop(s). Branches in 1 place(s). Prints results to the console. Returns a computed value to its caller.,"- Replaced an append-in-a-loop with a list comprehension.
+- Added a docstring to `evens()`.
+- Note: the rewrite goes through the AST, so comments are not preserved.
+
+Tip (Performance): Prefer built-ins and comprehensions; avoid repeated work inside loops."
+31701a0b,Pair sum finder v3,Performance,Hard,Draft,nested-loops,2026-10-29T19:05:50,2026-10-29T19:05:50,78.5,4,4,passed,passed,"def find_pairs(nums, target):
+    pairs = []
+    for i in range(len(nums)):
+        for j in range(i + 1, len(nums)):
+            if nums[i] + nums[j] == target:
+                pairs.append((nums[i], nums[j]))
+    return pairs
+
+print(find_pairs([1, 2, 3, 4, 5], 6))
+","def find_pairs(nums, target):
+    """"""Find pairs.""""""
+    pairs = []
+    for i in range(len(nums)):
+        for j in range(i + 1, len(nums)):
+            if nums[i] + nums[j] == target:
+                pairs.append((nums[i], nums[j]))
+    return pairs
+print(find_pairs([1, 2, 3, 4, 5], 6))","Defines 1 function(s): `find_pairs(nums, target)`. Uses 2 loop(s), including nested iteration (roughly quadratic work). Branches in 1 place(s). Prints results to the console. Returns a computed value to its caller.","- Added a docstring to `find_pairs()`.
+- Note: the rewrite goes through the AST, so comments are not preserved.
+
+Tip (Performance): Prefer built-ins and comprehensions; avoid repeated work inside loops."
+7e6c1d85,Pair sum finder,Performance,Medium,Draft,nested-loops,2026-10-30T11:12:50,2026-10-30T11:12:50,78.5,4,4,passed,passed,"def find_pairs(nums, target):
+    pairs = []
+    for i in range(len(nums)):
+        for j in range(i + 1, len(nums)):
+            if nums[i] + nums[j] == target:
+                pairs.append((nums[i], nums[j]))
+    return pairs
+
+print(find_pairs([1, 2, 3, 4, 5], 6))
+","def find_pairs(nums, target):
+    """"""Find pairs.""""""
+    pairs = []
+    for i in range(len(nums)):
+        for j in range(i + 1, len(nums)):
+            if nums[i] + nums[j] == target:
+                pairs.append((nums[i], nums[j]))
+    return pairs
+print(find_pairs([1, 2, 3, 4, 5], 6))","Defines 1 function(s): `find_pairs(nums, target)`. Uses 2 loop(s), including nested iteration (roughly quadratic work). Branches in 1 place(s). Prints results to the console. Returns a computed value to its caller.","- Added a docstring to `find_pairs()`.
+- Note: the rewrite goes through the AST, so comments are not preserved.
+
+Tip (Performance): Prefer built-ins and comprehensions; avoid repeated work inside loops."
+3a1698d8,Abc,Performance,Medium,Tested,loops|lists,2026-10-30T11:59:50,2026-10-30T11:59:50,88.0,3,2,passed,passed,"def evens(nums):
+    result = []
+    for n in nums:
+        if n % 2 == 0:
+            result.append(n)
+    return result
+
+print(evens(range(10)))
+","def evens(nums):
+    """"""Evens.""""""
+    result = [n for n in nums if n % 2 == 0]
+    return result
+print(evens(range(10)))",Defines 1 function(s): `evens(nums)`. Uses 1 loop(s). Branches in 1 place(s). Prints results to the console. Returns a computed value to its caller.,"- Replaced an append-in-a-loop with a list comprehension.
+- Added a docstring to `evens()`.
+- Note: the rewrite goes through the AST, so comments are not preserved.
+
+Tip (Performance): Prefer built-ins and comprehensions; avoid repeated work inside loops."
+ca3b430e,Average of empty list v4,Bug Fix,Easy,Draft,edge-case|zerodivision,2026-10-31T05:19:50,2026-10-31T05:19:50,58.5,1,1,failed,failed,"def average(nums):
+    return sum(nums) / len(nums)
+
+print(average([1, 2, 3]))
+print(average([]))
+","def average(nums):
+    """"""Average.""""""
+    return sum(nums) / len(nums)
+print(average([1, 2, 3]))
+print(average([]))",Defines 1 function(s): `average(nums)`. Prints results to the console. Returns a computed value to its caller.,"- Added a docstring to `average()`.
+- Note: the rewrite goes through the AST, so comments are not preserved.
+
+Tip (Bug Fix): Add guard clauses for empty or invalid input before computing."
+3084ceaa,Recursive Fibonacci v2,Performance,Medium,Draft,recursion,2026-11-01T07:52:50,2026-11-01T07:52:50,78.5,3,3,passed,passed,"def fib(n):
+    if n < 2:
+        return n
+    return fib(n - 1) + fib(n - 2)
+
+print([fib(i) for i in range(12)])
+","def fib(n):
+    """"""Fib.""""""
+    if n < 2:
+        return n
+    return fib(n - 1) + fib(n - 2)
+print([fib(i) for i in range(12)])",Defines 1 function(s): `fib(n)`. Branches in 1 place(s). Prints results to the console. Returns a computed value to its caller.,"- Added a docstring to `fib()`.
+- Note: the rewrite goes through the AST, so comments are not preserved.
+
+Tip (Performance): Prefer built-ins and comprehensions; avoid repeated work inside loops."
+ff6941e3,Hello script v2,Style,Hard,Tested,script,2026-11-03T13:20:50,2026-11-03T13:20:50,60.0,1,1,passed,passed,"print('hello world')
+","print('hello world')
+",Prints results to the console.,"- No safe automatic improvement found; the code already follows the common patterns.
+
+Tip (Style): Follow PEP 8 and PEP 20: compare with None using `is`, return booleans directly."
+6a2195dc,Greeting with None check v4,Style,Hard,Tested,none|pep8,2026-11-05T01:24:50,2026-11-05T01:24:50,78.5,2,2,passed,passed,"def greet(name):
+    if name == None:
+        return 'Hello, stranger'
+    return 'Hello, ' + name
+
+print(greet(None))
+print(greet('Ada'))
+","def greet(name):
+    """"""Greet.""""""
+    if name is None:
+        return 'Hello, stranger'
+    return 'Hello, ' + name
+print(greet(None))
+print(greet('Ada'))",Defines 1 function(s): `greet(name)`. Branches in 1 place(s). Prints results to the console. Returns a computed value to its caller.,"- Compared with None using `is` / `is not` instead of `==` / `!=`.
+- Added a docstring to `greet()`.
+- Note: the rewrite goes through the AST, so comments are not preserved.
+
+Tip (Style): Follow PEP 8 and PEP 20: compare with None using `is`, return booleans directly."
+bce25748,Pair sum finder v2,Performance,Easy,Tested,nested-loops,2026-11-05T17:50:50,2026-11-05T17:50:50,78.5,4,4,passed,passed,"def find_pairs(nums, target):
+    pairs = []
+    for i in range(len(nums)):
+        for j in range(i + 1, len(nums)):
+            if nums[i] + nums[j] == target:
+                pairs.append((nums[i], nums[j]))
+    return pairs
+
+print(find_pairs([1, 2, 3, 4, 5], 6))
+","def find_pairs(nums, target):
+    """"""Find pairs.""""""
+    pairs = []
+    for i in range(len(nums)):
+        for j in range(i + 1, len(nums)):
+            if nums[i] + nums[j] == target:
+                pairs.append((nums[i], nums[j]))
+    return pairs
+print(find_pairs([1, 2, 3, 4, 5], 6))","Defines 1 function(s): `find_pairs(nums, target)`. Uses 2 loop(s), including nested iteration (roughly quadratic work). Branches in 1 place(s). Prints results to the console. Returns a computed value to its caller.","- Added a docstring to `find_pairs()`.
+- Note: the rewrite goes through the AST, so comments are not preserved.
+
+Tip (Performance): Prefer built-ins and comprehensions; avoid repeated work inside loops."
+9229fa44,Squares list v3,Performance,Easy,Tested,loops|comprehension,2026-11-07T14:59:50,2026-11-07T14:59:50,81.5,2,2,passed,passed,"def squares(n):
+    out = []
+    for i in range(n):
+        out.append(i * i)
+    return out
+
+print(squares(6))
+","def squares(n):
+    """"""Squares.""""""
+    out = [i * i for i in range(n)]
+    return out
+print(squares(6))",Defines 1 function(s): `squares(n)`. Uses 1 loop(s). Prints results to the console. Returns a computed value to its caller.,"- Replaced an append-in-a-loop with a list comprehension.
+- Added a docstring to `squares()`.
+- Note: the rewrite goes through the AST, so comments are not preserved.
+
+Tip (Performance): Prefer built-ins and comprehensions; avoid repeated work inside loops."
+a55bf751,Recursive Fibonacci v3,Performance,Hard,Tested,recursion,2026-11-09T10:02:50,2026-11-09T10:02:50,78.5,3,3,passed,passed,"def fib(n):
+    if n < 2:
+        return n
+    return fib(n - 1) + fib(n - 2)
+
+print([fib(i) for i in range(12)])
+","def fib(n):
+    """"""Fib.""""""
+    if n < 2:
+        return n
+    return fib(n - 1) + fib(n - 2)
+print([fib(i) for i in range(12)])",Defines 1 function(s): `fib(n)`. Branches in 1 place(s). Prints results to the console. Returns a computed value to its caller.,"- Added a docstring to `fib()`.
+- Note: the rewrite goes through the AST, so comments are not preserved.
+
+Tip (Performance): Prefer built-ins and comprehensions; avoid repeated work inside loops."
+2930daf3,Word frequency counter,Readability,Easy,Documented,dicts|text,2026-11-12T16:07:50,2026-11-12T16:07:50,78.5,3,3,passed,passed,"def count_words(text):
+    counts = {}
+    for w in text.split():
+        if w in counts:
+            counts[w] = counts[w] + 1
+        else:
+            counts[w] = 1
+    return counts
+
+print(count_words('a b a c b a'))
+","def count_words(text):
+    """"""Count words.""""""
+    counts = {}
+    for w in text.split():
+        if w in counts:
+            counts[w] = counts[w] + 1
+        else:
+            counts[w] = 1
+    return counts
+print(count_words('a b a c b a'))",Defines 1 function(s): `count_words(text)`. Uses 1 loop(s). Branches in 1 place(s). Prints results to the console. Returns a computed value to its caller.,"- Added a docstring to `count_words()`.
+- Note: the rewrite goes through the AST, so comments are not preserved.
+
+Tip (Readability): Small functions with clear names and docstrings are easier to review."
+842c6265,Average of empty list,Bug Fix,Medium,Rejected,edge-case|zerodivision,2026-11-14T07:46:50,2026-11-14T07:46:50,58.5,1,1,failed,failed,"def average(nums):
+    return sum(nums) / len(nums)
+
+print(average([1, 2, 3]))
+print(average([]))
+","def average(nums):
+    """"""Average.""""""
+    return sum(nums) / len(nums)
+print(average([1, 2, 3]))
+print(average([]))",Defines 1 function(s): `average(nums)`. Prints results to the console. Returns a computed value to its caller.,"- Added a docstring to `average()`.
+- Note: the rewrite goes through the AST, so comments are not preserved.
+
+Tip (Bug Fix): Add guard clauses for empty or invalid input before computing."
+f6d6375f,Greeting with None check,Style,Easy,Draft,none|pep8,2026-11-16T16:47:50,2026-11-16T16:47:50,78.5,2,2,passed,passed,"def greet(name):
+    if name == None:
+        return 'Hello, stranger'
+    return 'Hello, ' + name
+
+print(greet(None))
+print(greet('Ada'))
+","def greet(name):
+    """"""Greet.""""""
+    if name is None:
+        return 'Hello, stranger'
+    return 'Hello, ' + name
+print(greet(None))
+print(greet('Ada'))",Defines 1 function(s): `greet(name)`. Branches in 1 place(s). Prints results to the console. Returns a computed value to its caller.,"- Compared with None using `is` / `is not` instead of `==` / `!=`.
+- Added a docstring to `greet()`.
+- Note: the rewrite goes through the AST, so comments are not preserved.
+
+Tip (Style): Follow PEP 8 and PEP 20: compare with None using `is`, return booleans directly."
+4f26b5fc,Hello script v4,Style,Hard,Tested,script,2026-11-18T20:45:50,2026-11-18T20:45:50,60.0,1,1,passed,passed,"print('hello world')
+","print('hello world')
+",Prints results to the console.,"- No safe automatic improvement found; the code already follows the common patterns.
+
+Tip (Style): Follow PEP 8 and PEP 20: compare with None using `is`, return booleans directly."
+8d135d92,Word frequency counter v3,Readability,Medium,Draft,dicts|text,2026-11-20T11:25:50,2026-11-20T11:25:50,78.5,3,3,passed,passed,"def count_words(text):
+    counts = {}
+    for w in text.split():
+        if w in counts:
+            counts[w] = counts[w] + 1
+        else:
+            counts[w] = 1
+    return counts
+
+print(count_words('a b a c b a'))
+","def count_words(text):
+    """"""Count words.""""""
+    counts = {}
+    for w in text.split():
+        if w in counts:
+            counts[w] = counts[w] + 1
+        else:
+            counts[w] = 1
+    return counts
+print(count_words('a b a c b a'))",Defines 1 function(s): `count_words(text)`. Uses 1 loop(s). Branches in 1 place(s). Prints results to the console. Returns a computed value to its caller.,"- Added a docstring to `count_words()`.
+- Note: the rewrite goes through the AST, so comments are not preserved.
+
+Tip (Readability): Small functions with clear names and docstrings are easier to review."
+0f44fa35,Adult age check v2,Readability,Easy,Documented,booleans,2026-11-20T17:20:50,2026-11-20T17:20:50,88.0,2,1,passed,passed,"def is_adult(age):
+    if age >= 18:
+        return True
+    else:
+        return False
+
+print(is_adult(20), is_adult(12))
+","def is_adult(age):
+    """"""Is adult.""""""
+    return age >= 18
+print(is_adult(20), is_adult(12))",Defines 1 function(s): `is_adult(age)`. Branches in 1 place(s). Prints results to the console. Returns a computed value to its caller.,"- Returned the boolean expression directly instead of if/else True/False.
+- Added a docstring to `is_adult()`.
+- Note: the rewrite goes through the AST, so comments are not preserved.
+
+Tip (Readability): Small functions with clear names and docstrings are easier to review."

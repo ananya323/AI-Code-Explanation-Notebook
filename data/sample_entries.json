@@ -1,0 +1,1785 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "title": "Squares list v2",
+      "category": "Performance",
+      "code": "def squares(n):\n    out = []\n    for i in range(n):\n        out.append(i * i)\n    return out\n\nprint(squares(6))\n",
+      "difficulty": "Medium",
+      "explanation": "Defines 1 function(s): `squares(n)`. Uses 1 loop(s). Prints results to the console. Returns a computed value to its caller.",
+      "improved_code": "def squares(n):\n    \"\"\"Squares.\"\"\"\n    out = [i * i for i in range(n)]\n    return out\nprint(squares(6))",
+      "rationale": "- Replaced an append-in-a-loop with a list comprehension.\n- Added a docstring to `squares()`.\n- Note: the rewrite goes through the AST, so comments are not preserved.\n\nTip (Performance): Prefer built-ins and comprehensions; avoid repeated work inside loops.",
+      "status": "Documented",
+      "tags": [
+        "loops",
+        "comprehension"
+      ],
+      "metrics_before": {
+        "lines": 6,
+        "functions": 1,
+        "complexity": 2,
+        "docstring_coverage": 0.0,
+        "valid": true
+      },
+      "metrics_after": {
+        "lines": 5,
+        "functions": 1,
+        "complexity": 2,
+        "docstring_coverage": 100.0,
+        "valid": true
+      },
+      "test_original": {
+        "status": "passed",
+        "stdout": "[0, 1, 4, 9, 16, 25]\n",
+        "stderr": "",
+        "runtime_ms": 60.0
+      },
+      "test_improved": {
+        "status": "passed",
+        "stdout": "[0, 1, 4, 9, 16, 25]\n",
+        "stderr": "",
+        "runtime_ms": 71.3
+      },
+      "score": 81.5,
+      "source": "seed",
+      "id": "b847c33a",
+      "created_at": "2026-09-30T06:39:50",
+      "updated_at": "2026-09-30T06:39:50"
+    },
+    {
+      "title": "Hello script",
+      "category": "Style",
+      "code": "print('hello world')\n",
+      "difficulty": "Medium",
+      "explanation": "Prints results to the console.",
+      "improved_code": "print('hello world')\n",
+      "rationale": "- No safe automatic improvement found; the code already follows the common patterns.\n\nTip (Style): Follow PEP 8 and PEP 20: compare with None using `is`, return booleans directly.",
+      "status": "Documented",
+      "tags": [
+        "script"
+      ],
+      "metrics_before": {
+        "lines": 1,
+        "functions": 0,
+        "complexity": 1,
+        "docstring_coverage": 100.0,
+        "valid": true
+      },
+      "metrics_after": {
+        "lines": 1,
+        "functions": 0,
+        "complexity": 1,
+        "docstring_coverage": 100.0,
+        "valid": true
+      },
+      "test_original": {
+        "status": "passed",
+        "stdout": "hello world\n",
+        "stderr": "",
+        "runtime_ms": 61.9
+      },
+      "test_improved": {
+        "status": "passed",
+        "stdout": "hello world\n",
+        "stderr": "",
+        "runtime_ms": 56.5
+      },
+      "score": 60.0,
+      "source": "seed",
+      "id": "bfa64e02",
+      "created_at": "2026-10-03T12:48:50",
+      "updated_at": "2026-10-03T12:48:50"
+    },
+    {
+      "title": "Average of empty list v3",
+      "category": "Bug Fix",
+      "code": "def average(nums):\n    return sum(nums) / len(nums)\n\nprint(average([1, 2, 3]))\nprint(average([]))\n",
+      "difficulty": "Hard",
+      "explanation": "Defines 1 function(s): `average(nums)`. Prints results to the console. Returns a computed value to its caller.",
+      "improved_code": "def average(nums):\n    \"\"\"Average.\"\"\"\n    return sum(nums) / len(nums)\nprint(average([1, 2, 3]))\nprint(average([]))",
+      "rationale": "- Added a docstring to `average()`.\n- Note: the rewrite goes through the AST, so comments are not preserved.\n\nTip (Bug Fix): Add guard clauses for empty or invalid input before computing.",
+      "status": "Draft",
+      "tags": [
+        "edge-case",
+        "zerodivision"
+      ],
+      "metrics_before": {
+        "lines": 4,
+        "functions": 1,
+        "complexity": 1,
+        "docstring_coverage": 0.0,
+        "valid": true
+      },
+      "metrics_after": {
+        "lines": 5,
+        "functions": 1,
+        "complexity": 1,
+        "docstring_coverage": 100.0,
+        "valid": true
+      },
+      "test_original": {
+        "status": "failed",
+        "stdout": "2.0\n",
+        "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 5, in <module>\n    print(average([]))\n          ~~~~~~~^^^^\n  File \"<string>\", line 2, in average\n    return sum(nums) / len(nums)\n           ~~~~~~~~~~^~~~~~~~~~~\nZeroDivisionError: division by zero\n",
+        "runtime_ms": 89.6
+      },
+      "test_improved": {
+        "status": "failed",
+        "stdout": "2.0\n",
+        "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 5, in <module>\n    print(average([]))\n          ~~~~~~~^^^^\n  File \"<string>\", line 3, in average\n    return sum(nums) / len(nums)\n           ~~~~~~~~~~^~~~~~~~~~~\nZeroDivisionError: division by zero\n",
+        "runtime_ms": 106.2
+      },
+      "score": 58.5,
+      "source": "seed",
+      "id": "d8fd6d99",
+      "created_at": "2026-10-03T17:07:50",
+      "updated_at": "2026-10-03T17:07:50"
+    },
+    {
+      "title": "Recursive Fibonacci v4",
+      "category": "Performance",
+      "code": "def fib(n):\n    if n < 2:\n        return n\n    return fib(n - 1) + fib(n - 2)\n\nprint([fib(i) for i in range(12)])\n",
+      "difficulty": "Easy",
+      "explanation": "Defines 1 function(s): `fib(n)`. Branches in 1 place(s). Prints results to the console. Returns a computed value to its caller.",
+      "improved_code": "def fib(n):\n    \"\"\"Fib.\"\"\"\n    if n < 2:\n        return n\n    return fib(n - 1) + fib(n - 2)\nprint([fib(i) for i in range(12)])",
+      "rationale": "- Added a docstring to `fib()`.\n- Note: the rewrite goes through the AST, so comments are not preserved.\n\nTip (Performance): Prefer built-ins and comprehensions; avoid repeated work inside loops.",
+      "status": "Draft",
+      "tags": [
+        "recursion"
+      ],
+      "metrics_before": {
+        "lines": 5,
+        "functions": 1,
+        "complexity": 3,
+        "docstring_coverage": 0.0,
+        "valid": true
+      },
+      "metrics_after": {
+        "lines": 6,
+        "functions": 1,
+        "complexity": 3,
+        "docstring_coverage": 100.0,
+        "valid": true
+      },
+      "test_original": {
+        "status": "passed",
+        "stdout": "[0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]\n",
+        "stderr": "",
+        "runtime_ms": 67.6
+      },
+      "test_improved": {
+        "status": "passed",
+        "stdout": "[0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]\n",
+        "stderr": "",
+        "runtime_ms": 59.8
+      },
+      "score": 78.5,
+      "source": "seed",
+      "id": "d80e130e",
+      "created_at": "2026-10-06T09:00:50",
+      "updated_at": "2026-10-06T09:00:50"
+    },
+    {
+      "title": "Filter even numbers",
+      "category": "Performance",
+      "code": "def evens(nums):\n    result = []\n    for n in nums:\n        if n % 2 == 0:\n            result.append(n)\n    return result\n\nprint(evens(range(10)))\n",
+      "difficulty": "Hard",
+      "explanation": "Defines 1 function(s): `evens(nums)`. Uses 1 loop(s). Branches in 1 place(s). Prints results to the console. Returns a computed value to its caller.",
+      "improved_code": "def evens(nums):\n    \"\"\"Evens.\"\"\"\n    result = [n for n in nums if n % 2 == 0]\n    return result\nprint(evens(range(10)))",
+      "rationale": "- Replaced an append-in-a-loop with a list comprehension.\n- Added a docstring to `evens()`.\n- Note: the rewrite goes through the AST, so comments are not preserved.\n\nTip (Performance): Prefer built-ins and comprehensions; avoid repeated work inside loops.",
+      "status": "Draft",
+      "tags": [
+        "loops",
+        "lists"
+      ],
+      "metrics_before": {
+        "lines": 7,
+        "functions": 1,
+        "complexity": 3,
+        "docstring_coverage": 0.0,
+        "valid": true
+      },
+      "metrics_after": {
+        "lines": 5,
+        "functions": 1,
+        "complexity": 2,
+        "docstring_coverage": 100.0,
+        "valid": true
+      },
+      "test_original": {
+        "status": "passed",
+        "stdout": "[0, 2, 4, 6, 8]\n",
+        "stderr": "",
+        "runtime_ms": 58.9
+      },
+      "test_improved": {
+        "status": "passed",
+        "stdout": "[0, 2, 4, 6, 8]\n",
+        "stderr": "",
+        "runtime_ms": 56.9
+      },
+      "score": 88.0,
+      "source": "seed",
+      "id": "413566f3",
+      "created_at": "2026-10-07T06:19:50",
+      "updated_at": "2026-10-07T06:19:50"
+    },
+    {
+      "title": "Adult age check v4",
+      "category": "Readability",
+      "code": "def is_adult(age):\n    if age >= 18:\n        return True\n    else:\n        return False\n\nprint(is_adult(20), is_adult(12))\n",
+      "difficulty": "Medium",
+      "explanation": "Defines 1 function(s): `is_adult(age)`. Branches in 1 place(s). Prints results to the console. Returns a computed value to its caller.",
+      "improved_code": "def is_adult(age):\n    \"\"\"Is adult.\"\"\"\n    return age >= 18\nprint(is_adult(20), is_adult(12))",
+      "rationale": "- Returned the boolean expression directly instead of if/else True/False.\n- Added a docstring to `is_adult()`.\n- Note: the rewrite goes through the AST, so comments are not preserved.\n\nTip (Readability): Small functions with clear names and docstrings are easier to review.",
+      "status": "Draft",
+      "tags": [
+        "booleans"
+      ],
+      "metrics_before": {
+        "lines": 6,
+        "functions": 1,
+        "complexity": 2,
+        "docstring_coverage": 0.0,
+        "valid": true
+      },
+      "metrics_after": {
+        "lines": 4,
+        "functions": 1,
+        "complexity": 1,
+        "docstring_coverage": 100.0,
+        "valid": true
+      },
+      "test_original": {
+        "status": "passed",
+        "stdout": "True False\n",
+        "stderr": "",
+        "runtime_ms": 75.1
+      },
+      "test_improved": {
+        "status": "passed",
+        "stdout": "True False\n",
+        "stderr": "",
+        "runtime_ms": 63.4
+      },
+      "score": 88.0,
+      "source": "seed",
+      "id": "b2b27a91",
+      "created_at": "2026-10-07T15:18:50",
+      "updated_at": "2026-10-07T15:18:50"
+    },
+    {
+      "title": "Word frequency counter v2",
+      "category": "Readability",
+      "code": "def count_words(text):\n    counts = {}\n    for w in text.split():\n        if w in counts:\n            counts[w] = counts[w] + 1\n        else:\n            counts[w] = 1\n    return counts\n\nprint(count_words('a b a c b a'))\n",
+      "difficulty": "Medium",
+      "explanation": "Defines 1 function(s): `count_words(text)`. Uses 1 loop(s). Branches in 1 place(s). Prints results to the console. Returns a computed value to its caller.",
+      "improved_code": "def count_words(text):\n    \"\"\"Count words.\"\"\"\n    counts = {}\n    for w in text.split():\n        if w in counts:\n            counts[w] = counts[w] + 1\n        else:\n            counts[w] = 1\n    return counts\nprint(count_words('a b a c b a'))",
+      "rationale": "- Added a docstring to `count_words()`.\n- Note: the rewrite goes through the AST, so comments are not preserved.\n\nTip (Readability): Small functions with clear names and docstrings are easier to review.",
+      "status": "Documented",
+      "tags": [
+        "dicts",
+        "text"
+      ],
+      "metrics_before": {
+        "lines": 9,
+        "functions": 1,
+        "complexity": 3,
+        "docstring_coverage": 0.0,
+        "valid": true
+      },
+      "metrics_after": {
+        "lines": 10,
+        "functions": 1,
+        "complexity": 3,
+        "docstring_coverage": 100.0,
+        "valid": true
+      },
+      "test_original": {
+        "status": "passed",
+        "stdout": "{'a': 3, 'b': 2, 'c': 1}\n",
+        "stderr": "",
+        "runtime_ms": 80.5
+      },
+      "test_improved": {
+        "status": "passed",
+        "stdout": "{'a': 3, 'b': 2, 'c': 1}\n",
+        "stderr": "",
+        "runtime_ms": 67.1
+      },
+      "score": 78.5,
+      "source": "seed",
+      "id": "8710c92b",
+      "created_at": "2026-10-10T18:30:50",
+      "updated_at": "2026-10-10T18:30:50"
+    },
+    {
+      "title": "Safe division",
+      "category": "Safety",
+      "code": "def safe_div(a, b):\n    try:\n        return a / b\n    except:\n        return None\n\nprint(safe_div(4, 2), safe_div(1, 0))\n",
+      "difficulty": "Hard",
+      "explanation": "Defines 1 function(s): `safe_div(a, b)`. Handles errors with try/except. Prints results to the console. Returns a computed value to its caller.",
+      "improved_code": "def safe_div(a, b):\n    \"\"\"Safe div.\"\"\"\n    try:\n        return a / b\n    except Exception:\n        return None\nprint(safe_div(4, 2), safe_div(1, 0))",
+      "rationale": "- Replaced bare `except:` with `except Exception:`.\n- Added a docstring to `safe_div()`.\n- Note: the rewrite goes through the AST, so comments are not preserved.\n\nTip (Safety): Never use bare `except:`; catch specific exceptions and avoid eval/exec.",
+      "status": "Draft",
+      "tags": [
+        "errors"
+      ],
+      "metrics_before": {
+        "lines": 6,
+        "functions": 1,
+        "complexity": 2,
+        "docstring_coverage": 0.0,
+        "valid": true
+      },
+      "metrics_after": {
+        "lines": 7,
+        "functions": 1,
+        "complexity": 2,
+        "docstring_coverage": 100.0,
+        "valid": true
+      },
+      "test_original": {
+        "status": "passed",
+        "stdout": "2.0 None\n",
+        "stderr": "",
+        "runtime_ms": 58.2
+      },
+      "test_improved": {
+        "status": "passed",
+        "stdout": "2.0 None\n",
+        "stderr": "",
+        "runtime_ms": 67.5
+      },
+      "score": 78.5,
+      "source": "seed",
+      "id": "54592e90",
+      "created_at": "2026-10-12T16:00:50",
+      "updated_at": "2026-10-12T16:00:50"
+    },
+    {
+      "title": "Safe division v4",
+      "category": "Safety",
+      "code": "def safe_div(a, b):\n    try:\n        return a / b\n    except:\n        return None\n\nprint(safe_div(4, 2), safe_div(1, 0))\n",
+      "difficulty": "Hard",
+      "explanation": "Defines 1 function(s): `safe_div(a, b)`. Handles errors with try/except. Prints results to the console. Returns a computed value to its caller.",
+      "improved_code": "def safe_div(a, b):\n    \"\"\"Safe div.\"\"\"\n    try:\n        return a / b\n    except Exception:\n        return None\nprint(safe_div(4, 2), safe_div(1, 0))",
+      "rationale": "- Replaced bare `except:` with `except Exception:`.\n- Added a docstring to `safe_div()`.\n- Note: the rewrite goes through the AST, so comments are not preserved.\n\nTip (Safety): Never use bare `except:`; catch specific exceptions and avoid eval/exec.",
+      "status": "Tested",
+      "tags": [
+        "errors"
+      ],
+      "metrics_before": {
+        "lines": 6,
+        "functions": 1,
+        "complexity": 2,
+        "docstring_coverage": 0.0,
+        "valid": true
+      },
+      "metrics_after": {
+        "lines": 7,
+        "functions": 1,
+        "complexity": 2,
+        "docstring_coverage": 100.0,
+        "valid": true
+      },
+      "test_original": {
+        "status": "passed",
+        "stdout": "2.0 None\n",
+        "stderr": "",
+        "runtime_ms": 77.1
+      },
+      "test_improved": {
+        "status": "passed",
+        "stdout": "2.0 None\n",
+        "stderr": "",
+        "runtime_ms": 82.2
+      },
+      "score": 78.5,
+      "source": "seed",
+      "id": "ef47f322",
+      "created_at": "2026-10-13T21:56:50",
+      "updated_at": "2026-10-13T21:56:50"
+    },
+    {
+      "title": "Greeting with None check v2",
+      "category": "Style",
+      "code": "def greet(name):\n    if name == None:\n        return 'Hello, stranger'\n    return 'Hello, ' + name\n\nprint(greet(None))\nprint(greet('Ada'))\n",
+      "difficulty": "Medium",
+      "explanation": "Defines 1 function(s): `greet(name)`. Branches in 1 place(s). Prints results to the console. Returns a computed value to its caller.",
+      "improved_code": "def greet(name):\n    \"\"\"Greet.\"\"\"\n    if name is None:\n        return 'Hello, stranger'\n    return 'Hello, ' + name\nprint(greet(None))\nprint(greet('Ada'))",
+      "rationale": "- Compared with None using `is` / `is not` instead of `==` / `!=`.\n- Added a docstring to `greet()`.\n- Note: the rewrite goes through the AST, so comments are not preserved.\n\nTip (Style): Follow PEP 8 and PEP 20: compare with None using `is`, return booleans directly.",
+      "status": "Documented",
+      "tags": [
+        "none",
+        "pep8"
+      ],
+      "metrics_before": {
+        "lines": 6,
+        "functions": 1,
+        "complexity": 2,
+        "docstring_coverage": 0.0,
+        "valid": true
+      },
+      "metrics_after": {
+        "lines": 7,
+        "functions": 1,
+        "complexity": 2,
+        "docstring_coverage": 100.0,
+        "valid": true
+      },
+      "test_original": {
+        "status": "passed",
+        "stdout": "Hello, stranger\nHello, Ada\n",
+        "stderr": "",
+        "runtime_ms": 74.0
+      },
+      "test_improved": {
+        "status": "passed",
+        "stdout": "Hello, stranger\nHello, Ada\n",
+        "stderr": "",
+        "runtime_ms": 74.1
+      },
+      "score": 78.5,
+      "source": "seed",
+      "id": "559893f0",
+      "created_at": "2026-10-15T02:58:50",
+      "updated_at": "2026-10-15T02:58:50"
+    },
+    {
+      "title": "Word frequency counter v4",
+      "category": "Readability",
+      "code": "def count_words(text):\n    counts = {}\n    for w in text.split():\n        if w in counts:\n            counts[w] = counts[w] + 1\n        else:\n            counts[w] = 1\n    return counts\n\nprint(count_words('a b a c b a'))\n",
+      "difficulty": "Hard",
+      "explanation": "Defines 1 function(s): `count_words(text)`. Uses 1 loop(s). Branches in 1 place(s). Prints results to the console. Returns a computed value to its caller.",
+      "improved_code": "def count_words(text):\n    \"\"\"Count words.\"\"\"\n    counts = {}\n    for w in text.split():\n        if w in counts:\n            counts[w] = counts[w] + 1\n        else:\n            counts[w] = 1\n    return counts\nprint(count_words('a b a c b a'))",
+      "rationale": "- Added a docstring to `count_words()`.\n- Note: the rewrite goes through the AST, so comments are not preserved.\n\nTip (Readability): Small functions with clear names and docstrings are easier to review.",
+      "status": "Documented",
+      "tags": [
+        "dicts",
+        "text"
+      ],
+      "metrics_before": {
+        "lines": 9,
+        "functions": 1,
+        "complexity": 3,
+        "docstring_coverage": 0.0,
+        "valid": true
+      },
+      "metrics_after": {
+        "lines": 10,
+        "functions": 1,
+        "complexity": 3,
+        "docstring_coverage": 100.0,
+        "valid": true
+      },
+      "test_original": {
+        "status": "passed",
+        "stdout": "{'a': 3, 'b': 2, 'c': 1}\n",
+        "stderr": "",
+        "runtime_ms": 65.1
+      },
+      "test_improved": {
+        "status": "passed",
+        "stdout": "{'a': 3, 'b': 2, 'c': 1}\n",
+        "stderr": "",
+        "runtime_ms": 67.1
+      },
+      "score": 78.5,
+      "source": "seed",
+      "id": "b3dcf43f",
+      "created_at": "2026-10-16T04:03:50",
+      "updated_at": "2026-10-16T04:03:50"
+    },
+    {
+      "title": "Safe division v3",
+      "category": "Safety",
+      "code": "def safe_div(a, b):\n    try:\n        return a / b\n    except:\n        return None\n\nprint(safe_div(4, 2), safe_div(1, 0))\n",
+      "difficulty": "Hard",
+      "explanation": "Defines 1 function(s): `safe_div(a, b)`. Handles errors with try/except. Prints results to the console. Returns a computed value to its caller.",
+      "improved_code": "def safe_div(a, b):\n    \"\"\"Safe div.\"\"\"\n    try:\n        return a / b\n    except Exception:\n        return None\nprint(safe_div(4, 2), safe_div(1, 0))",
+      "rationale": "- Replaced bare `except:` with `except Exception:`.\n- Added a docstring to `safe_div()`.\n- Note: the rewrite goes through the AST, so comments are not preserved.\n\nTip (Safety): Never use bare `except:`; catch specific exceptions and avoid eval/exec.",
+      "status": "Tested",
+      "tags": [
+        "errors"
+      ],
+      "metrics_before": {
+        "lines": 6,
+        "functions": 1,
+        "complexity": 2,
+        "docstring_coverage": 0.0,
+        "valid": true
+      },
+      "metrics_after": {
+        "lines": 7,
+        "functions": 1,
+        "complexity": 2,
+        "docstring_coverage": 100.0,
+        "valid": true
+      },
+      "test_original": {
+        "status": "passed",
+        "stdout": "2.0 None\n",
+        "stderr": "",
+        "runtime_ms": 68.0
+      },
+      "test_improved": {
+        "status": "passed",
+        "stdout": "2.0 None\n",
+        "stderr": "",
+        "runtime_ms": 65.4
+      },
+      "score": 78.5,
+      "source": "seed",
+      "id": "b56f633c",
+      "created_at": "2026-10-17T00:37:50",
+      "updated_at": "2026-10-17T00:37:50"
+    },
+    {
+      "title": "Recursive Fibonacci",
+      "category": "Performance",
+      "code": "def fib(n):\n    if n < 2:\n        return n\n    return fib(n - 1) + fib(n - 2)\n\nprint([fib(i) for i in range(12)])\n",
+      "difficulty": "Medium",
+      "explanation": "Defines 1 function(s): `fib(n)`. Branches in 1 place(s). Prints results to the console. Returns a computed value to its caller.",
+      "improved_code": "def fib(n):\n    \"\"\"Fib.\"\"\"\n    if n < 2:\n        return n\n    return fib(n - 1) + fib(n - 2)\nprint([fib(i) for i in range(12)])",
+      "rationale": "- Added a docstring to `fib()`.\n- Note: the rewrite goes through the AST, so comments are not preserved.\n\nTip (Performance): Prefer built-ins and comprehensions; avoid repeated work inside loops.",
+      "status": "Tested",
+      "tags": [
+        "recursion"
+      ],
+      "metrics_before": {
+        "lines": 5,
+        "functions": 1,
+        "complexity": 3,
+        "docstring_coverage": 0.0,
+        "valid": true
+      },
+      "metrics_after": {
+        "lines": 6,
+        "functions": 1,
+        "complexity": 3,
+        "docstring_coverage": 100.0,
+        "valid": true
+      },
+      "test_original": {
+        "status": "passed",
+        "stdout": "[0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]\n",
+        "stderr": "",
+        "runtime_ms": 221.0
+      },
+      "test_improved": {
+        "status": "passed",
+        "stdout": "[0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]\n",
+        "stderr": "",
+        "runtime_ms": 256.6
+      },
+      "score": 78.5,
+      "source": "seed",
+      "id": "aa902006",
+      "created_at": "2026-10-17T05:43:50",
+      "updated_at": "2026-10-17T05:43:50"
+    },
+    {
+      "title": "Greeting with None check v3",
+      "category": "Style",
+      "code": "def greet(name):\n    if name == None:\n        return 'Hello, stranger'\n    return 'Hello, ' + name\n\nprint(greet(None))\nprint(greet('Ada'))\n",
+      "difficulty": "Easy",
+      "explanation": "Defines 1 function(s): `greet(name)`. Branches in 1 place(s). Prints results to the console. Returns a computed value to its caller.",
+      "improved_code": "def greet(name):\n    \"\"\"Greet.\"\"\"\n    if name is None:\n        return 'Hello, stranger'\n    return 'Hello, ' + name\nprint(greet(None))\nprint(greet('Ada'))",
+      "rationale": "- Compared with None using `is` / `is not` instead of `==` / `!=`.\n- Added a docstring to `greet()`.\n- Note: the rewrite goes through the AST, so comments are not preserved.\n\nTip (Style): Follow PEP 8 and PEP 20: compare with None using `is`, return booleans directly.",
+      "status": "Documented",
+      "tags": [
+        "none",
+        "pep8"
+      ],
+      "metrics_before": {
+        "lines": 6,
+        "functions": 1,
+        "complexity": 2,
+        "docstring_coverage": 0.0,
+        "valid": true
+      },
+      "metrics_after": {
+        "lines": 7,
+        "functions": 1,
+        "complexity": 2,
+        "docstring_coverage": 100.0,
+        "valid": true
+      },
+      "test_original": {
+        "status": "passed",
+        "stdout": "Hello, stranger\nHello, Ada\n",
+        "stderr": "",
+        "runtime_ms": 62.2
+      },
+      "test_improved": {
+        "status": "passed",
+        "stdout": "Hello, stranger\nHello, Ada\n",
+        "stderr": "",
+        "runtime_ms": 62.7
+      },
+      "score": 78.5,
+      "source": "seed",
+      "id": "b372ff76",
+      "created_at": "2026-10-17T16:14:50",
+      "updated_at": "2026-10-17T16:14:50"
+    },
+    {
+      "title": "Pair sum finder v4",
+      "category": "Performance",
+      "code": "def find_pairs(nums, target):\n    pairs = []\n    for i in range(len(nums)):\n        for j in range(i + 1, len(nums)):\n            if nums[i] + nums[j] == target:\n                pairs.append((nums[i], nums[j]))\n    return pairs\n\nprint(find_pairs([1, 2, 3, 4, 5], 6))\n",
+      "difficulty": "Easy",
+      "explanation": "Defines 1 function(s): `find_pairs(nums, target)`. Uses 2 loop(s), including nested iteration (roughly quadratic work). Branches in 1 place(s). Prints results to the console. Returns a computed value to its caller.",
+      "improved_code": "def find_pairs(nums, target):\n    \"\"\"Find pairs.\"\"\"\n    pairs = []\n    for i in range(len(nums)):\n        for j in range(i + 1, len(nums)):\n            if nums[i] + nums[j] == target:\n                pairs.append((nums[i], nums[j]))\n    return pairs\nprint(find_pairs([1, 2, 3, 4, 5], 6))",
+      "rationale": "- Added a docstring to `find_pairs()`.\n- Note: the rewrite goes through the AST, so comments are not preserved.\n\nTip (Performance): Prefer built-ins and comprehensions; avoid repeated work inside loops.",
+      "status": "Tested",
+      "tags": [
+        "nested-loops"
+      ],
+      "metrics_before": {
+        "lines": 8,
+        "functions": 1,
+        "complexity": 4,
+        "docstring_coverage": 0.0,
+        "valid": true
+      },
+      "metrics_after": {
+        "lines": 9,
+        "functions": 1,
+        "complexity": 4,
+        "docstring_coverage": 100.0,
+        "valid": true
+      },
+      "test_original": {
+        "status": "passed",
+        "stdout": "[(1, 5), (2, 4)]\n",
+        "stderr": "",
+        "runtime_ms": 119.7
+      },
+      "test_improved": {
+        "status": "passed",
+        "stdout": "[(1, 5), (2, 4)]\n",
+        "stderr": "",
+        "runtime_ms": 143.6
+      },
+      "score": 78.5,
+      "source": "seed",
+      "id": "8ceca047",
+      "created_at": "2026-10-18T12:29:50",
+      "updated_at": "2026-10-18T12:29:50"
+    },
+    {
+      "title": "Hello script v3",
+      "category": "Style",
+      "code": "print('hello world')\n",
+      "difficulty": "Hard",
+      "explanation": "Prints results to the console.",
+      "improved_code": "print('hello world')\n",
+      "rationale": "- No safe automatic improvement found; the code already follows the common patterns.\n\nTip (Style): Follow PEP 8 and PEP 20: compare with None using `is`, return booleans directly.",
+      "status": "Tested",
+      "tags": [
+        "script"
+      ],
+      "metrics_before": {
+        "lines": 1,
+        "functions": 0,
+        "complexity": 1,
+        "docstring_coverage": 100.0,
+        "valid": true
+      },
+      "metrics_after": {
+        "lines": 1,
+        "functions": 0,
+        "complexity": 1,
+        "docstring_coverage": 100.0,
+        "valid": true
+      },
+      "test_original": {
+        "status": "passed",
+        "stdout": "hello world\n",
+        "stderr": "",
+        "runtime_ms": 60.3
+      },
+      "test_improved": {
+        "status": "passed",
+        "stdout": "hello world\n",
+        "stderr": "",
+        "runtime_ms": 58.5
+      },
+      "score": 60.0,
+      "source": "seed",
+      "id": "48a31695",
+      "created_at": "2026-10-19T13:51:50",
+      "updated_at": "2026-10-19T13:51:50"
+    },
+    {
+      "title": "Average of empty list v2",
+      "category": "Bug Fix",
+      "code": "def average(nums):\n    return sum(nums) / len(nums)\n\nprint(average([1, 2, 3]))\nprint(average([]))\n",
+      "difficulty": "Hard",
+      "explanation": "Defines 1 function(s): `average(nums)`. Prints results to the console. Returns a computed value to its caller.",
+      "improved_code": "def average(nums):\n    \"\"\"Average.\"\"\"\n    return sum(nums) / len(nums)\nprint(average([1, 2, 3]))\nprint(average([]))",
+      "rationale": "- Added a docstring to `average()`.\n- Note: the rewrite goes through the AST, so comments are not preserved.\n\nTip (Bug Fix): Add guard clauses for empty or invalid input before computing.",
+      "status": "Draft",
+      "tags": [
+        "edge-case",
+        "zerodivision"
+      ],
+      "metrics_before": {
+        "lines": 4,
+        "functions": 1,
+        "complexity": 1,
+        "docstring_coverage": 0.0,
+        "valid": true
+      },
+      "metrics_after": {
+        "lines": 5,
+        "functions": 1,
+        "complexity": 1,
+        "docstring_coverage": 100.0,
+        "valid": true
+      },
+      "test_original": {
+        "status": "failed",
+        "stdout": "2.0\n",
+        "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 5, in <module>\n    print(average([]))\n          ~~~~~~~^^^^\n  File \"<string>\", line 2, in average\n    return sum(nums) / len(nums)\n           ~~~~~~~~~~^~~~~~~~~~~\nZeroDivisionError: division by zero\n",
+        "runtime_ms": 116.3
+      },
+      "test_improved": {
+        "status": "failed",
+        "stdout": "2.0\n",
+        "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 5, in <module>\n    print(average([]))\n          ~~~~~~~^^^^\n  File \"<string>\", line 3, in average\n    return sum(nums) / len(nums)\n           ~~~~~~~~~~^~~~~~~~~~~\nZeroDivisionError: division by zero\n",
+        "runtime_ms": 104.2
+      },
+      "score": 58.5,
+      "source": "seed",
+      "id": "0425a9bb",
+      "created_at": "2026-10-19T15:19:50",
+      "updated_at": "2026-10-19T15:19:50"
+    },
+    {
+      "title": "Filter even numbers v4",
+      "category": "Performance",
+      "code": "def evens(nums):\n    result = []\n    for n in nums:\n        if n % 2 == 0:\n            result.append(n)\n    return result\n\nprint(evens(range(10)))\n",
+      "difficulty": "Hard",
+      "explanation": "Defines 1 function(s): `evens(nums)`. Uses 1 loop(s). Branches in 1 place(s). Prints results to the console. Returns a computed value to its caller.",
+      "improved_code": "def evens(nums):\n    \"\"\"Evens.\"\"\"\n    result = [n for n in nums if n % 2 == 0]\n    return result\nprint(evens(range(10)))",
+      "rationale": "- Replaced an append-in-a-loop with a list comprehension.\n- Added a docstring to `evens()`.\n- Note: the rewrite goes through the AST, so comments are not preserved.\n\nTip (Performance): Prefer built-ins and comprehensions; avoid repeated work inside loops.",
+      "status": "Draft",
+      "tags": [
+        "loops",
+        "lists"
+      ],
+      "metrics_before": {
+        "lines": 7,
+        "functions": 1,
+        "complexity": 3,
+        "docstring_coverage": 0.0,
+        "valid": true
+      },
+      "metrics_after": {
+        "lines": 5,
+        "functions": 1,
+        "complexity": 2,
+        "docstring_coverage": 100.0,
+        "valid": true
+      },
+      "test_original": {
+        "status": "passed",
+        "stdout": "[0, 2, 4, 6, 8]\n",
+        "stderr": "",
+        "runtime_ms": 101.8
+      },
+      "test_improved": {
+        "status": "passed",
+        "stdout": "[0, 2, 4, 6, 8]\n",
+        "stderr": "",
+        "runtime_ms": 77.0
+      },
+      "score": 88.0,
+      "source": "seed",
+      "id": "9b88a13c",
+      "created_at": "2026-10-20T05:45:50",
+      "updated_at": "2026-10-20T05:45:50"
+    },
+    {
+      "title": "Squares list",
+      "category": "Performance",
+      "code": "def squares(n):\n    out = []\n    for i in range(n):\n        out.append(i * i)\n    return out\n\nprint(squares(6))\n",
+      "difficulty": "Easy",
+      "explanation": "Defines 1 function(s): `squares(n)`. Uses 1 loop(s). Prints results to the console. Returns a computed value to its caller.",
+      "improved_code": "def squares(n):\n    \"\"\"Squares.\"\"\"\n    out = [i * i for i in range(n)]\n    return out\nprint(squares(6))",
+      "rationale": "- Replaced an append-in-a-loop with a list comprehension.\n- Added a docstring to `squares()`.\n- Note: the rewrite goes through the AST, so comments are not preserved.\n\nTip (Performance): Prefer built-ins and comprehensions; avoid repeated work inside loops.",
+      "status": "Tested",
+      "tags": [
+        "loops",
+        "comprehension"
+      ],
+      "metrics_before": {
+        "lines": 6,
+        "functions": 1,
+        "complexity": 2,
+        "docstring_coverage": 0.0,
+        "valid": true
+      },
+      "metrics_after": {
+        "lines": 5,
+        "functions": 1,
+        "complexity": 2,
+        "docstring_coverage": 100.0,
+        "valid": true
+      },
+      "test_original": {
+        "status": "passed",
+        "stdout": "[0, 1, 4, 9, 16, 25]\n",
+        "stderr": "",
+        "runtime_ms": 63.5
+      },
+      "test_improved": {
+        "status": "passed",
+        "stdout": "[0, 1, 4, 9, 16, 25]\n",
+        "stderr": "",
+        "runtime_ms": 63.2
+      },
+      "score": 81.5,
+      "source": "seed",
+      "id": "2ba3e640",
+      "created_at": "2026-10-21T19:33:50",
+      "updated_at": "2026-10-21T19:33:50"
+    },
+    {
+      "title": "Squares list v4",
+      "category": "Performance",
+      "code": "def squares(n):\n    out = []\n    for i in range(n):\n        out.append(i * i)\n    return out\n\nprint(squares(6))\n",
+      "difficulty": "Hard",
+      "explanation": "Defines 1 function(s): `squares(n)`. Uses 1 loop(s). Prints results to the console. Returns a computed value to its caller.",
+      "improved_code": "def squares(n):\n    \"\"\"Squares.\"\"\"\n    out = [i * i for i in range(n)]\n    return out\nprint(squares(6))",
+      "rationale": "- Replaced an append-in-a-loop with a list comprehension.\n- Added a docstring to `squares()`.\n- Note: the rewrite goes through the AST, so comments are not preserved.\n\nTip (Performance): Prefer built-ins and comprehensions; avoid repeated work inside loops.",
+      "status": "Documented",
+      "tags": [
+        "loops",
+        "comprehension"
+      ],
+      "metrics_before": {
+        "lines": 6,
+        "functions": 1,
+        "complexity": 2,
+        "docstring_coverage": 0.0,
+        "valid": true
+      },
+      "metrics_after": {
+        "lines": 5,
+        "functions": 1,
+        "complexity": 2,
+        "docstring_coverage": 100.0,
+        "valid": true
+      },
+      "test_original": {
+        "status": "passed",
+        "stdout": "[0, 1, 4, 9, 16, 25]\n",
+        "stderr": "",
+        "runtime_ms": 63.0
+      },
+      "test_improved": {
+        "status": "passed",
+        "stdout": "[0, 1, 4, 9, 16, 25]\n",
+        "stderr": "",
+        "runtime_ms": 60.2
+      },
+      "score": 81.5,
+      "source": "seed",
+      "id": "a8cb246b",
+      "created_at": "2026-10-22T10:39:50",
+      "updated_at": "2026-10-22T10:39:50"
+    },
+    {
+      "title": "Safe division v2",
+      "category": "Safety",
+      "code": "def safe_div(a, b):\n    try:\n        return a / b\n    except:\n        return None\n\nprint(safe_div(4, 2), safe_div(1, 0))\n",
+      "difficulty": "Easy",
+      "explanation": "Defines 1 function(s): `safe_div(a, b)`. Handles errors with try/except. Prints results to the console. Returns a computed value to its caller.",
+      "improved_code": "def safe_div(a, b):\n    \"\"\"Safe div.\"\"\"\n    try:\n        return a / b\n    except Exception:\n        return None\nprint(safe_div(4, 2), safe_div(1, 0))",
+      "rationale": "- Replaced bare `except:` with `except Exception:`.\n- Added a docstring to `safe_div()`.\n- Note: the rewrite goes through the AST, so comments are not preserved.\n\nTip (Safety): Never use bare `except:`; catch specific exceptions and avoid eval/exec.",
+      "status": "Tested",
+      "tags": [
+        "errors"
+      ],
+      "metrics_before": {
+        "lines": 6,
+        "functions": 1,
+        "complexity": 2,
+        "docstring_coverage": 0.0,
+        "valid": true
+      },
+      "metrics_after": {
+        "lines": 7,
+        "functions": 1,
+        "complexity": 2,
+        "docstring_coverage": 100.0,
+        "valid": true
+      },
+      "test_original": {
+        "status": "passed",
+        "stdout": "2.0 None\n",
+        "stderr": "",
+        "runtime_ms": 92.6
+      },
+      "test_improved": {
+        "status": "passed",
+        "stdout": "2.0 None\n",
+        "stderr": "",
+        "runtime_ms": 80.3
+      },
+      "score": 78.5,
+      "source": "seed",
+      "id": "3adda438",
+      "created_at": "2026-10-24T17:41:50",
+      "updated_at": "2026-10-24T17:41:50"
+    },
+    {
+      "title": "Adult age check",
+      "category": "Readability",
+      "code": "def is_adult(age):\n    if age >= 18:\n        return True\n    else:\n        return False\n\nprint(is_adult(20), is_adult(12))\n",
+      "difficulty": "Hard",
+      "explanation": "Defines 1 function(s): `is_adult(age)`. Branches in 1 place(s). Prints results to the console. Returns a computed value to its caller.",
+      "improved_code": "def is_adult(age):\n    \"\"\"Is adult.\"\"\"\n    return age >= 18\nprint(is_adult(20), is_adult(12))",
+      "rationale": "- Returned the boolean expression directly instead of if/else True/False.\n- Added a docstring to `is_adult()`.\n- Note: the rewrite goes through the AST, so comments are not preserved.\n\nTip (Readability): Small functions with clear names and docstrings are easier to review.",
+      "status": "Draft",
+      "tags": [
+        "booleans"
+      ],
+      "metrics_before": {
+        "lines": 6,
+        "functions": 1,
+        "complexity": 2,
+        "docstring_coverage": 0.0,
+        "valid": true
+      },
+      "metrics_after": {
+        "lines": 4,
+        "functions": 1,
+        "complexity": 1,
+        "docstring_coverage": 100.0,
+        "valid": true
+      },
+      "test_original": {
+        "status": "passed",
+        "stdout": "True False\n",
+        "stderr": "",
+        "runtime_ms": 112.5
+      },
+      "test_improved": {
+        "status": "passed",
+        "stdout": "True False\n",
+        "stderr": "",
+        "runtime_ms": 55.2
+      },
+      "score": 88.0,
+      "source": "seed",
+      "id": "6addd410",
+      "created_at": "2026-10-27T13:33:50",
+      "updated_at": "2026-10-27T13:33:50"
+    },
+    {
+      "title": "Adult age check v3",
+      "category": "Readability",
+      "code": "def is_adult(age):\n    if age >= 18:\n        return True\n    else:\n        return False\n\nprint(is_adult(20), is_adult(12))\n",
+      "difficulty": "Easy",
+      "explanation": "Defines 1 function(s): `is_adult(age)`. Branches in 1 place(s). Prints results to the console. Returns a computed value to its caller.",
+      "improved_code": "def is_adult(age):\n    \"\"\"Is adult.\"\"\"\n    return age >= 18\nprint(is_adult(20), is_adult(12))",
+      "rationale": "- Returned the boolean expression directly instead of if/else True/False.\n- Added a docstring to `is_adult()`.\n- Note: the rewrite goes through the AST, so comments are not preserved.\n\nTip (Readability): Small functions with clear names and docstrings are easier to review.",
+      "status": "Documented",
+      "tags": [
+        "booleans"
+      ],
+      "metrics_before": {
+        "lines": 6,
+        "functions": 1,
+        "complexity": 2,
+        "docstring_coverage": 0.0,
+        "valid": true
+      },
+      "metrics_after": {
+        "lines": 4,
+        "functions": 1,
+        "complexity": 1,
+        "docstring_coverage": 100.0,
+        "valid": true
+      },
+      "test_original": {
+        "status": "passed",
+        "stdout": "True False\n",
+        "stderr": "",
+        "runtime_ms": 77.8
+      },
+      "test_improved": {
+        "status": "passed",
+        "stdout": "True False\n",
+        "stderr": "",
+        "runtime_ms": 59.8
+      },
+      "score": 88.0,
+      "source": "seed",
+      "id": "3f5ac3b7",
+      "created_at": "2026-10-28T18:05:50",
+      "updated_at": "2026-10-28T18:05:50"
+    },
+    {
+      "title": "Boundary: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "category": "Performance",
+      "code": "def evens(nums):\n    result = []\n    for n in nums:\n        if n % 2 == 0:\n            result.append(n)\n    return result\n\nprint(evens(range(10)))\n",
+      "difficulty": "Easy",
+      "explanation": "Defines 1 function(s): `evens(nums)`. Uses 1 loop(s). Branches in 1 place(s). Prints results to the console. Returns a computed value to its caller.",
+      "improved_code": "def evens(nums):\n    \"\"\"Evens.\"\"\"\n    result = [n for n in nums if n % 2 == 0]\n    return result\nprint(evens(range(10)))",
+      "rationale": "- Replaced an append-in-a-loop with a list comprehension.\n- Added a docstring to `evens()`.\n- Note: the rewrite goes through the AST, so comments are not preserved.\n\nTip (Performance): Prefer built-ins and comprehensions; avoid repeated work inside loops.",
+      "status": "Documented",
+      "tags": [
+        "loops",
+        "lists"
+      ],
+      "metrics_before": {
+        "lines": 7,
+        "functions": 1,
+        "complexity": 3,
+        "docstring_coverage": 0.0,
+        "valid": true
+      },
+      "metrics_after": {
+        "lines": 5,
+        "functions": 1,
+        "complexity": 2,
+        "docstring_coverage": 100.0,
+        "valid": true
+      },
+      "test_original": {
+        "status": "passed",
+        "stdout": "[0, 2, 4, 6, 8]\n",
+        "stderr": "",
+        "runtime_ms": 79.1
+      },
+      "test_improved": {
+        "status": "passed",
+        "stdout": "[0, 2, 4, 6, 8]\n",
+        "stderr": "",
+        "runtime_ms": 63.9
+      },
+      "score": 88.0,
+      "source": "seed",
+      "id": "e384eda4",
+      "created_at": "2026-10-29T06:30:50",
+      "updated_at": "2026-10-29T06:30:50"
+    },
+    {
+      "title": "Pair sum finder v3",
+      "category": "Performance",
+      "code": "def find_pairs(nums, target):\n    pairs = []\n    for i in range(len(nums)):\n        for j in range(i + 1, len(nums)):\n            if nums[i] + nums[j] == target:\n                pairs.append((nums[i], nums[j]))\n    return pairs\n\nprint(find_pairs([1, 2, 3, 4, 5], 6))\n",
+      "difficulty": "Hard",
+      "explanation": "Defines 1 function(s): `find_pairs(nums, target)`. Uses 2 loop(s), including nested iteration (roughly quadratic work). Branches in 1 place(s). Prints results to the console. Returns a computed value to its caller.",
+      "improved_code": "def find_pairs(nums, target):\n    \"\"\"Find pairs.\"\"\"\n    pairs = []\n    for i in range(len(nums)):\n        for j in range(i + 1, len(nums)):\n            if nums[i] + nums[j] == target:\n                pairs.append((nums[i], nums[j]))\n    return pairs\nprint(find_pairs([1, 2, 3, 4, 5], 6))",
+      "rationale": "- Added a docstring to `find_pairs()`.\n- Note: the rewrite goes through the AST, so comments are not preserved.\n\nTip (Performance): Prefer built-ins and comprehensions; avoid repeated work inside loops.",
+      "status": "Draft",
+      "tags": [
+        "nested-loops"
+      ],
+      "metrics_before": {
+        "lines": 8,
+        "functions": 1,
+        "complexity": 4,
+        "docstring_coverage": 0.0,
+        "valid": true
+      },
+      "metrics_after": {
+        "lines": 9,
+        "functions": 1,
+        "complexity": 4,
+        "docstring_coverage": 100.0,
+        "valid": true
+      },
+      "test_original": {
+        "status": "passed",
+        "stdout": "[(1, 5), (2, 4)]\n",
+        "stderr": "",
+        "runtime_ms": 65.8
+      },
+      "test_improved": {
+        "status": "passed",
+        "stdout": "[(1, 5), (2, 4)]\n",
+        "stderr": "",
+        "runtime_ms": 71.3
+      },
+      "score": 78.5,
+      "source": "seed",
+      "id": "31701a0b",
+      "created_at": "2026-10-29T19:05:50",
+      "updated_at": "2026-10-29T19:05:50"
+    },
+    {
+      "title": "Pair sum finder",
+      "category": "Performance",
+      "code": "def find_pairs(nums, target):\n    pairs = []\n    for i in range(len(nums)):\n        for j in range(i + 1, len(nums)):\n            if nums[i] + nums[j] == target:\n                pairs.append((nums[i], nums[j]))\n    return pairs\n\nprint(find_pairs([1, 2, 3, 4, 5], 6))\n",
+      "difficulty": "Medium",
+      "explanation": "Defines 1 function(s): `find_pairs(nums, target)`. Uses 2 loop(s), including nested iteration (roughly quadratic work). Branches in 1 place(s). Prints results to the console. Returns a computed value to its caller.",
+      "improved_code": "def find_pairs(nums, target):\n    \"\"\"Find pairs.\"\"\"\n    pairs = []\n    for i in range(len(nums)):\n        for j in range(i + 1, len(nums)):\n            if nums[i] + nums[j] == target:\n                pairs.append((nums[i], nums[j]))\n    return pairs\nprint(find_pairs([1, 2, 3, 4, 5], 6))",
+      "rationale": "- Added a docstring to `find_pairs()`.\n- Note: the rewrite goes through the AST, so comments are not preserved.\n\nTip (Performance): Prefer built-ins and comprehensions; avoid repeated work inside loops.",
+      "status": "Draft",
+      "tags": [
+        "nested-loops"
+      ],
+      "metrics_before": {
+        "lines": 8,
+        "functions": 1,
+        "complexity": 4,
+        "docstring_coverage": 0.0,
+        "valid": true
+      },
+      "metrics_after": {
+        "lines": 9,
+        "functions": 1,
+        "complexity": 4,
+        "docstring_coverage": 100.0,
+        "valid": true
+      },
+      "test_original": {
+        "status": "passed",
+        "stdout": "[(1, 5), (2, 4)]\n",
+        "stderr": "",
+        "runtime_ms": 75.7
+      },
+      "test_improved": {
+        "status": "passed",
+        "stdout": "[(1, 5), (2, 4)]\n",
+        "stderr": "",
+        "runtime_ms": 97.7
+      },
+      "score": 78.5,
+      "source": "seed",
+      "id": "7e6c1d85",
+      "created_at": "2026-10-30T11:12:50",
+      "updated_at": "2026-10-30T11:12:50"
+    },
+    {
+      "title": "Abc",
+      "category": "Performance",
+      "code": "def evens(nums):\n    result = []\n    for n in nums:\n        if n % 2 == 0:\n            result.append(n)\n    return result\n\nprint(evens(range(10)))\n",
+      "difficulty": "Medium",
+      "explanation": "Defines 1 function(s): `evens(nums)`. Uses 1 loop(s). Branches in 1 place(s). Prints results to the console. Returns a computed value to its caller.",
+      "improved_code": "def evens(nums):\n    \"\"\"Evens.\"\"\"\n    result = [n for n in nums if n % 2 == 0]\n    return result\nprint(evens(range(10)))",
+      "rationale": "- Replaced an append-in-a-loop with a list comprehension.\n- Added a docstring to `evens()`.\n- Note: the rewrite goes through the AST, so comments are not preserved.\n\nTip (Performance): Prefer built-ins and comprehensions; avoid repeated work inside loops.",
+      "status": "Tested",
+      "tags": [
+        "loops",
+        "lists"
+      ],
+      "metrics_before": {
+        "lines": 7,
+        "functions": 1,
+        "complexity": 3,
+        "docstring_coverage": 0.0,
+        "valid": true
+      },
+      "metrics_after": {
+        "lines": 5,
+        "functions": 1,
+        "complexity": 2,
+        "docstring_coverage": 100.0,
+        "valid": true
+      },
+      "test_original": {
+        "status": "passed",
+        "stdout": "[0, 2, 4, 6, 8]\n",
+        "stderr": "",
+        "runtime_ms": 67.1
+      },
+      "test_improved": {
+        "status": "passed",
+        "stdout": "[0, 2, 4, 6, 8]\n",
+        "stderr": "",
+        "runtime_ms": 91.9
+      },
+      "score": 88.0,
+      "source": "seed",
+      "id": "3a1698d8",
+      "created_at": "2026-10-30T11:59:50",
+      "updated_at": "2026-10-30T11:59:50"
+    },
+    {
+      "title": "Average of empty list v4",
+      "category": "Bug Fix",
+      "code": "def average(nums):\n    return sum(nums) / len(nums)\n\nprint(average([1, 2, 3]))\nprint(average([]))\n",
+      "difficulty": "Easy",
+      "explanation": "Defines 1 function(s): `average(nums)`. Prints results to the console. Returns a computed value to its caller.",
+      "improved_code": "def average(nums):\n    \"\"\"Average.\"\"\"\n    return sum(nums) / len(nums)\nprint(average([1, 2, 3]))\nprint(average([]))",
+      "rationale": "- Added a docstring to `average()`.\n- Note: the rewrite goes through the AST, so comments are not preserved.\n\nTip (Bug Fix): Add guard clauses for empty or invalid input before computing.",
+      "status": "Draft",
+      "tags": [
+        "edge-case",
+        "zerodivision"
+      ],
+      "metrics_before": {
+        "lines": 4,
+        "functions": 1,
+        "complexity": 1,
+        "docstring_coverage": 0.0,
+        "valid": true
+      },
+      "metrics_after": {
+        "lines": 5,
+        "functions": 1,
+        "complexity": 1,
+        "docstring_coverage": 100.0,
+        "valid": true
+      },
+      "test_original": {
+        "status": "failed",
+        "stdout": "2.0\n",
+        "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 5, in <module>\n    print(average([]))\n          ~~~~~~~^^^^\n  File \"<string>\", line 2, in average\n    return sum(nums) / len(nums)\n           ~~~~~~~~~~^~~~~~~~~~~\nZeroDivisionError: division by zero\n",
+        "runtime_ms": 99.2
+      },
+      "test_improved": {
+        "status": "failed",
+        "stdout": "2.0\n",
+        "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 5, in <module>\n    print(average([]))\n          ~~~~~~~^^^^\n  File \"<string>\", line 3, in average\n    return sum(nums) / len(nums)\n           ~~~~~~~~~~^~~~~~~~~~~\nZeroDivisionError: division by zero\n",
+        "runtime_ms": 109.4
+      },
+      "score": 58.5,
+      "source": "seed",
+      "id": "ca3b430e",
+      "created_at": "2026-10-31T05:19:50",
+      "updated_at": "2026-10-31T05:19:50"
+    },
+    {
+      "title": "Recursive Fibonacci v2",
+      "category": "Performance",
+      "code": "def fib(n):\n    if n < 2:\n        return n\n    return fib(n - 1) + fib(n - 2)\n\nprint([fib(i) for i in range(12)])\n",
+      "difficulty": "Medium",
+      "explanation": "Defines 1 function(s): `fib(n)`. Branches in 1 place(s). Prints results to the console. Returns a computed value to its caller.",
+      "improved_code": "def fib(n):\n    \"\"\"Fib.\"\"\"\n    if n < 2:\n        return n\n    return fib(n - 1) + fib(n - 2)\nprint([fib(i) for i in range(12)])",
+      "rationale": "- Added a docstring to `fib()`.\n- Note: the rewrite goes through the AST, so comments are not preserved.\n\nTip (Performance): Prefer built-ins and comprehensions; avoid repeated work inside loops.",
+      "status": "Draft",
+      "tags": [
+        "recursion"
+      ],
+      "metrics_before": {
+        "lines": 5,
+        "functions": 1,
+        "complexity": 3,
+        "docstring_coverage": 0.0,
+        "valid": true
+      },
+      "metrics_after": {
+        "lines": 6,
+        "functions": 1,
+        "complexity": 3,
+        "docstring_coverage": 100.0,
+        "valid": true
+      },
+      "test_original": {
+        "status": "passed",
+        "stdout": "[0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]\n",
+        "stderr": "",
+        "runtime_ms": 63.6
+      },
+      "test_improved": {
+        "status": "passed",
+        "stdout": "[0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]\n",
+        "stderr": "",
+        "runtime_ms": 71.0
+      },
+      "score": 78.5,
+      "source": "seed",
+      "id": "3084ceaa",
+      "created_at": "2026-11-01T07:52:50",
+      "updated_at": "2026-11-01T07:52:50"
+    },
+    {
+      "title": "Hello script v2",
+      "category": "Style",
+      "code": "print('hello world')\n",
+      "difficulty": "Hard",
+      "explanation": "Prints results to the console.",
+      "improved_code": "print('hello world')\n",
+      "rationale": "- No safe automatic improvement found; the code already follows the common patterns.\n\nTip (Style): Follow PEP 8 and PEP 20: compare with None using `is`, return booleans directly.",
+      "status": "Tested",
+      "tags": [
+        "script"
+      ],
+      "metrics_before": {
+        "lines": 1,
+        "functions": 0,
+        "complexity": 1,
+        "docstring_coverage": 100.0,
+        "valid": true
+      },
+      "metrics_after": {
+        "lines": 1,
+        "functions": 0,
+        "complexity": 1,
+        "docstring_coverage": 100.0,
+        "valid": true
+      },
+      "test_original": {
+        "status": "passed",
+        "stdout": "hello world\n",
+        "stderr": "",
+        "runtime_ms": 75.8
+      },
+      "test_improved": {
+        "status": "passed",
+        "stdout": "hello world\n",
+        "stderr": "",
+        "runtime_ms": 60.0
+      },
+      "score": 60.0,
+      "source": "seed",
+      "id": "ff6941e3",
+      "created_at": "2026-11-03T13:20:50",
+      "updated_at": "2026-11-03T13:20:50"
+    },
+    {
+      "title": "Greeting with None check v4",
+      "category": "Style",
+      "code": "def greet(name):\n    if name == None:\n        return 'Hello, stranger'\n    return 'Hello, ' + name\n\nprint(greet(None))\nprint(greet('Ada'))\n",
+      "difficulty": "Hard",
+      "explanation": "Defines 1 function(s): `greet(name)`. Branches in 1 place(s). Prints results to the console. Returns a computed value to its caller.",
+      "improved_code": "def greet(name):\n    \"\"\"Greet.\"\"\"\n    if name is None:\n        return 'Hello, stranger'\n    return 'Hello, ' + name\nprint(greet(None))\nprint(greet('Ada'))",
+      "rationale": "- Compared with None using `is` / `is not` instead of `==` / `!=`.\n- Added a docstring to `greet()`.\n- Note: the rewrite goes through the AST, so comments are not preserved.\n\nTip (Style): Follow PEP 8 and PEP 20: compare with None using `is`, return booleans directly.",
+      "status": "Tested",
+      "tags": [
+        "none",
+        "pep8"
+      ],
+      "metrics_before": {
+        "lines": 6,
+        "functions": 1,
+        "complexity": 2,
+        "docstring_coverage": 0.0,
+        "valid": true
+      },
+      "metrics_after": {
+        "lines": 7,
+        "functions": 1,
+        "complexity": 2,
+        "docstring_coverage": 100.0,
+        "valid": true
+      },
+      "test_original": {
+        "status": "passed",
+        "stdout": "Hello, stranger\nHello, Ada\n",
+        "stderr": "",
+        "runtime_ms": 70.7
+      },
+      "test_improved": {
+        "status": "passed",
+        "stdout": "Hello, stranger\nHello, Ada\n",
+        "stderr": "",
+        "runtime_ms": 60.4
+      },
+      "score": 78.5,
+      "source": "seed",
+      "id": "6a2195dc",
+      "created_at": "2026-11-05T01:24:50",
+      "updated_at": "2026-11-05T01:24:50"
+    },
+    {
+      "title": "Pair sum finder v2",
+      "category": "Performance",
+      "code": "def find_pairs(nums, target):\n    pairs = []\n    for i in range(len(nums)):\n        for j in range(i + 1, len(nums)):\n            if nums[i] + nums[j] == target:\n                pairs.append((nums[i], nums[j]))\n    return pairs\n\nprint(find_pairs([1, 2, 3, 4, 5], 6))\n",
+      "difficulty": "Easy",
+      "explanation": "Defines 1 function(s): `find_pairs(nums, target)`. Uses 2 loop(s), including nested iteration (roughly quadratic work). Branches in 1 place(s). Prints results to the console. Returns a computed value to its caller.",
+      "improved_code": "def find_pairs(nums, target):\n    \"\"\"Find pairs.\"\"\"\n    pairs = []\n    for i in range(len(nums)):\n        for j in range(i + 1, len(nums)):\n            if nums[i] + nums[j] == target:\n                pairs.append((nums[i], nums[j]))\n    return pairs\nprint(find_pairs([1, 2, 3, 4, 5], 6))",
+      "rationale": "- Added a docstring to `find_pairs()`.\n- Note: the rewrite goes through the AST, so comments are not preserved.\n\nTip (Performance): Prefer built-ins and comprehensions; avoid repeated work inside loops.",
+      "status": "Tested",
+      "tags": [
+        "nested-loops"
+      ],
+      "metrics_before": {
+        "lines": 8,
+        "functions": 1,
+        "complexity": 4,
+        "docstring_coverage": 0.0,
+        "valid": true
+      },
+      "metrics_after": {
+        "lines": 9,
+        "functions": 1,
+        "complexity": 4,
+        "docstring_coverage": 100.0,
+        "valid": true
+      },
+      "test_original": {
+        "status": "passed",
+        "stdout": "[(1, 5), (2, 4)]\n",
+        "stderr": "",
+        "runtime_ms": 67.9
+      },
+      "test_improved": {
+        "status": "passed",
+        "stdout": "[(1, 5), (2, 4)]\n",
+        "stderr": "",
+        "runtime_ms": 75.8
+      },
+      "score": 78.5,
+      "source": "seed",
+      "id": "bce25748",
+      "created_at": "2026-11-05T17:50:50",
+      "updated_at": "2026-11-05T17:50:50"
+    },
+    {
+      "title": "Squares list v3",
+      "category": "Performance",
+      "code": "def squares(n):\n    out = []\n    for i in range(n):\n        out.append(i * i)\n    return out\n\nprint(squares(6))\n",
+      "difficulty": "Easy",
+      "explanation": "Defines 1 function(s): `squares(n)`. Uses 1 loop(s). Prints results to the console. Returns a computed value to its caller.",
+      "improved_code": "def squares(n):\n    \"\"\"Squares.\"\"\"\n    out = [i * i for i in range(n)]\n    return out\nprint(squares(6))",
+      "rationale": "- Replaced an append-in-a-loop with a list comprehension.\n- Added a docstring to `squares()`.\n- Note: the rewrite goes through the AST, so comments are not preserved.\n\nTip (Performance): Prefer built-ins and comprehensions; avoid repeated work inside loops.",
+      "status": "Tested",
+      "tags": [
+        "loops",
+        "comprehension"
+      ],
+      "metrics_before": {
+        "lines": 6,
+        "functions": 1,
+        "complexity": 2,
+        "docstring_coverage": 0.0,
+        "valid": true
+      },
+      "metrics_after": {
+        "lines": 5,
+        "functions": 1,
+        "complexity": 2,
+        "docstring_coverage": 100.0,
+        "valid": true
+      },
+      "test_original": {
+        "status": "passed",
+        "stdout": "[0, 1, 4, 9, 16, 25]\n",
+        "stderr": "",
+        "runtime_ms": 78.2
+      },
+      "test_improved": {
+        "status": "passed",
+        "stdout": "[0, 1, 4, 9, 16, 25]\n",
+        "stderr": "",
+        "runtime_ms": 61.3
+      },
+      "score": 81.5,
+      "source": "seed",
+      "id": "9229fa44",
+      "created_at": "2026-11-07T14:59:50",
+      "updated_at": "2026-11-07T14:59:50"
+    },
+    {
+      "title": "Recursive Fibonacci v3",
+      "category": "Performance",
+      "code": "def fib(n):\n    if n < 2:\n        return n\n    return fib(n - 1) + fib(n - 2)\n\nprint([fib(i) for i in range(12)])\n",
+      "difficulty": "Hard",
+      "explanation": "Defines 1 function(s): `fib(n)`. Branches in 1 place(s). Prints results to the console. Returns a computed value to its caller.",
+      "improved_code": "def fib(n):\n    \"\"\"Fib.\"\"\"\n    if n < 2:\n        return n\n    return fib(n - 1) + fib(n - 2)\nprint([fib(i) for i in range(12)])",
+      "rationale": "- Added a docstring to `fib()`.\n- Note: the rewrite goes through the AST, so comments are not preserved.\n\nTip (Performance): Prefer built-ins and comprehensions; avoid repeated work inside loops.",
+      "status": "Tested",
+      "tags": [
+        "recursion"
+      ],
+      "metrics_before": {
+        "lines": 5,
+        "functions": 1,
+        "complexity": 3,
+        "docstring_coverage": 0.0,
+        "valid": true
+      },
+      "metrics_after": {
+        "lines": 6,
+        "functions": 1,
+        "complexity": 3,
+        "docstring_coverage": 100.0,
+        "valid": true
+      },
+      "test_original": {
+        "status": "passed",
+        "stdout": "[0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]\n",
+        "stderr": "",
+        "runtime_ms": 62.4
+      },
+      "test_improved": {
+        "status": "passed",
+        "stdout": "[0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]\n",
+        "stderr": "",
+        "runtime_ms": 61.1
+      },
+      "score": 78.5,
+      "source": "seed",
+      "id": "a55bf751",
+      "created_at": "2026-11-09T10:02:50",
+      "updated_at": "2026-11-09T10:02:50"
+    },
+    {
+      "title": "Word frequency counter",
+      "category": "Readability",
+      "code": "def count_words(text):\n    counts = {}\n    for w in text.split():\n        if w in counts:\n            counts[w] = counts[w] + 1\n        else:\n            counts[w] = 1\n    return counts\n\nprint(count_words('a b a c b a'))\n",
+      "difficulty": "Easy",
+      "explanation": "Defines 1 function(s): `count_words(text)`. Uses 1 loop(s). Branches in 1 place(s). Prints results to the console. Returns a computed value to its caller.",
+      "improved_code": "def count_words(text):\n    \"\"\"Count words.\"\"\"\n    counts = {}\n    for w in text.split():\n        if w in counts:\n            counts[w] = counts[w] + 1\n        else:\n            counts[w] = 1\n    return counts\nprint(count_words('a b a c b a'))",
+      "rationale": "- Added a docstring to `count_words()`.\n- Note: the rewrite goes through the AST, so comments are not preserved.\n\nTip (Readability): Small functions with clear names and docstrings are easier to review.",
+      "status": "Documented",
+      "tags": [
+        "dicts",
+        "text"
+      ],
+      "metrics_before": {
+        "lines": 9,
+        "functions": 1,
+        "complexity": 3,
+        "docstring_coverage": 0.0,
+        "valid": true
+      },
+      "metrics_after": {
+        "lines": 10,
+        "functions": 1,
+        "complexity": 3,
+        "docstring_coverage": 100.0,
+        "valid": true
+      },
+      "test_original": {
+        "status": "passed",
+        "stdout": "{'a': 3, 'b': 2, 'c': 1}\n",
+        "stderr": "",
+        "runtime_ms": 105.5
+      },
+      "test_improved": {
+        "status": "passed",
+        "stdout": "{'a': 3, 'b': 2, 'c': 1}\n",
+        "stderr": "",
+        "runtime_ms": 88.3
+      },
+      "score": 78.5,
+      "source": "seed",
+      "id": "2930daf3",
+      "created_at": "2026-11-12T16:07:50",
+      "updated_at": "2026-11-12T16:07:50"
+    },
+    {
+      "title": "Average of empty list",
+      "category": "Bug Fix",
+      "code": "def average(nums):\n    return sum(nums) / len(nums)\n\nprint(average([1, 2, 3]))\nprint(average([]))\n",
+      "difficulty": "Medium",
+      "explanation": "Defines 1 function(s): `average(nums)`. Prints results to the console. Returns a computed value to its caller.",
+      "improved_code": "def average(nums):\n    \"\"\"Average.\"\"\"\n    return sum(nums) / len(nums)\nprint(average([1, 2, 3]))\nprint(average([]))",
+      "rationale": "- Added a docstring to `average()`.\n- Note: the rewrite goes through the AST, so comments are not preserved.\n\nTip (Bug Fix): Add guard clauses for empty or invalid input before computing.",
+      "status": "Rejected",
+      "tags": [
+        "edge-case",
+        "zerodivision"
+      ],
+      "metrics_before": {
+        "lines": 4,
+        "functions": 1,
+        "complexity": 1,
+        "docstring_coverage": 0.0,
+        "valid": true
+      },
+      "metrics_after": {
+        "lines": 5,
+        "functions": 1,
+        "complexity": 1,
+        "docstring_coverage": 100.0,
+        "valid": true
+      },
+      "test_original": {
+        "status": "failed",
+        "stdout": "2.0\n",
+        "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 5, in <module>\n    print(average([]))\n          ~~~~~~~^^^^\n  File \"<string>\", line 2, in average\n    return sum(nums) / len(nums)\n           ~~~~~~~~~~^~~~~~~~~~~\nZeroDivisionError: division by zero\n",
+        "runtime_ms": 103.1
+      },
+      "test_improved": {
+        "status": "failed",
+        "stdout": "2.0\n",
+        "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 5, in <module>\n    print(average([]))\n          ~~~~~~~^^^^\n  File \"<string>\", line 3, in average\n    return sum(nums) / len(nums)\n           ~~~~~~~~~~^~~~~~~~~~~\nZeroDivisionError: division by zero\n",
+        "runtime_ms": 111.2
+      },
+      "score": 58.5,
+      "source": "seed",
+      "id": "842c6265",
+      "created_at": "2026-11-14T07:46:50",
+      "updated_at": "2026-11-14T07:46:50"
+    },
+    {
+      "title": "Greeting with None check",
+      "category": "Style",
+      "code": "def greet(name):\n    if name == None:\n        return 'Hello, stranger'\n    return 'Hello, ' + name\n\nprint(greet(None))\nprint(greet('Ada'))\n",
+      "difficulty": "Easy",
+      "explanation": "Defines 1 function(s): `greet(name)`. Branches in 1 place(s). Prints results to the console. Returns a computed value to its caller.",
+      "improved_code": "def greet(name):\n    \"\"\"Greet.\"\"\"\n    if name is None:\n        return 'Hello, stranger'\n    return 'Hello, ' + name\nprint(greet(None))\nprint(greet('Ada'))",
+      "rationale": "- Compared with None using `is` / `is not` instead of `==` / `!=`.\n- Added a docstring to `greet()`.\n- Note: the rewrite goes through the AST, so comments are not preserved.\n\nTip (Style): Follow PEP 8 and PEP 20: compare with None using `is`, return booleans directly.",
+      "status": "Draft",
+      "tags": [
+        "none",
+        "pep8"
+      ],
+      "metrics_before": {
+        "lines": 6,
+        "functions": 1,
+        "complexity": 2,
+        "docstring_coverage": 0.0,
+        "valid": true
+      },
+      "metrics_after": {
+        "lines": 7,
+        "functions": 1,
+        "complexity": 2,
+        "docstring_coverage": 100.0,
+        "valid": true
+      },
+      "test_original": {
+        "status": "passed",
+        "stdout": "Hello, stranger\nHello, Ada\n",
+        "stderr": "",
+        "runtime_ms": 60.4
+      },
+      "test_improved": {
+        "status": "passed",
+        "stdout": "Hello, stranger\nHello, Ada\n",
+        "stderr": "",
+        "runtime_ms": 68.1
+      },
+      "score": 78.5,
+      "source": "seed",
+      "id": "f6d6375f",
+      "created_at": "2026-11-16T16:47:50",
+      "updated_at": "2026-11-16T16:47:50"
+    },
+    {
+      "title": "Hello script v4",
+      "category": "Style",
+      "code": "print('hello world')\n",
+      "difficulty": "Hard",
+      "explanation": "Prints results to the console.",
+      "improved_code": "print('hello world')\n",
+      "rationale": "- No safe automatic improvement found; the code already follows the common patterns.\n\nTip (Style): Follow PEP 8 and PEP 20: compare with None using `is`, return booleans directly.",
+      "status": "Tested",
+      "tags": [
+        "script"
+      ],
+      "metrics_before": {
+        "lines": 1,
+        "functions": 0,
+        "complexity": 1,
+        "docstring_coverage": 100.0,
+        "valid": true
+      },
+      "metrics_after": {
+        "lines": 1,
+        "functions": 0,
+        "complexity": 1,
+        "docstring_coverage": 100.0,
+        "valid": true
+      },
+      "test_original": {
+        "status": "passed",
+        "stdout": "hello world\n",
+        "stderr": "",
+        "runtime_ms": 62.2
+      },
+      "test_improved": {
+        "status": "passed",
+        "stdout": "hello world\n",
+        "stderr": "",
+        "runtime_ms": 59.1
+      },
+      "score": 60.0,
+      "source": "seed",
+      "id": "4f26b5fc",
+      "created_at": "2026-11-18T20:45:50",
+      "updated_at": "2026-11-18T20:45:50"
+    },
+    {
+      "title": "Word frequency counter v3",
+      "category": "Readability",
+      "code": "def count_words(text):\n    counts = {}\n    for w in text.split():\n        if w in counts:\n            counts[w] = counts[w] + 1\n        else:\n            counts[w] = 1\n    return counts\n\nprint(count_words('a b a c b a'))\n",
+      "difficulty": "Medium",
+      "explanation": "Defines 1 function(s): `count_words(text)`. Uses 1 loop(s). Branches in 1 place(s). Prints results to the console. Returns a computed value to its caller.",
+      "improved_code": "def count_words(text):\n    \"\"\"Count words.\"\"\"\n    counts = {}\n    for w in text.split():\n        if w in counts:\n            counts[w] = counts[w] + 1\n        else:\n            counts[w] = 1\n    return counts\nprint(count_words('a b a c b a'))",
+      "rationale": "- Added a docstring to `count_words()`.\n- Note: the rewrite goes through the AST, so comments are not preserved.\n\nTip (Readability): Small functions with clear names and docstrings are easier to review.",
+      "status": "Draft",
+      "tags": [
+        "dicts",
+        "text"
+      ],
+      "metrics_before": {
+        "lines": 9,
+        "functions": 1,
+        "complexity": 3,
+        "docstring_coverage": 0.0,
+        "valid": true
+      },
+      "metrics_after": {
+        "lines": 10,
+        "functions": 1,
+        "complexity": 3,
+        "docstring_coverage": 100.0,
+        "valid": true
+      },
+      "test_original": {
+        "status": "passed",
+        "stdout": "{'a': 3, 'b': 2, 'c': 1}\n",
+        "stderr": "",
+        "runtime_ms": 61.3
+      },
+      "test_improved": {
+        "status": "passed",
+        "stdout": "{'a': 3, 'b': 2, 'c': 1}\n",
+        "stderr": "",
+        "runtime_ms": 60.2
+      },
+      "score": 78.5,
+      "source": "seed",
+      "id": "8d135d92",
+      "created_at": "2026-11-20T11:25:50",
+      "updated_at": "2026-11-20T11:25:50"
+    },
+    {
+      "title": "Adult age check v2",
+      "category": "Readability",
+      "code": "def is_adult(age):\n    if age >= 18:\n        return True\n    else:\n        return False\n\nprint(is_adult(20), is_adult(12))\n",
+      "difficulty": "Easy",
+      "explanation": "Defines 1 function(s): `is_adult(age)`. Branches in 1 place(s). Prints results to the console. Returns a computed value to its caller.",
+      "improved_code": "def is_adult(age):\n    \"\"\"Is adult.\"\"\"\n    return age >= 18\nprint(is_adult(20), is_adult(12))",
+      "rationale": "- Returned the boolean expression directly instead of if/else True/False.\n- Added a docstring to `is_adult()`.\n- Note: the rewrite goes through the AST, so comments are not preserved.\n\nTip (Readability): Small functions with clear names and docstrings are easier to review.",
+      "status": "Documented",
+      "tags": [
+        "booleans"
+      ],
+      "metrics_before": {
+        "lines": 6,
+        "functions": 1,
+        "complexity": 2,
+        "docstring_coverage": 0.0,
+        "valid": true
+      },
+      "metrics_after": {
+        "lines": 4,
+        "functions": 1,
+        "complexity": 1,
+        "docstring_coverage": 100.0,
+        "valid": true
+      },
+      "test_original": {
+        "status": "passed",
+        "stdout": "True False\n",
+        "stderr": "",
+        "runtime_ms": 84.7
+      },
+      "test_improved": {
+        "status": "passed",
+        "stdout": "True False\n",
+        "stderr": "",
+        "runtime_ms": 101.8
+      },
+      "score": 88.0,
+      "source": "seed",
+      "id": "0f44fa35",
+      "created_at": "2026-11-20T17:20:50",
+      "updated_at": "2026-11-20T17:20:50"
+    }
+  ]
+}
