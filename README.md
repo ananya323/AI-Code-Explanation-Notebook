@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # AI Code Explanation Notebook
 
 Streamlit app for using an approved AI assistant to explain, improve, test and document small Python programs.
@@ -26,3 +27,6 @@ python -m pytest tests         # run tests
 - Sandbox: static checks block risky imports/calls (os, subprocess, socket, eval, exec, open…), then run in a subprocess with a 5 s timeout and capped output. It is a safeguard for demo use, not a hardened security boundary.
 - Corrupted/missing `entries.json` is backed up and replaced with a clean template.
 - Optional API mode: `pip install anthropic`, set `ANTHROPIC_API_KEY` or paste a key in the sidebar.
+=======
+# AI-Code-Explanation-Notebook
+>>>>>>> 72d6c294a229a6e0c984fc790418c2258f8330d5
